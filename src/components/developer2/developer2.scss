@@ -1,10 +1,15 @@
 // Developer2 style
 .DevContainer{
-  .DevForm{
+  .DevForm{margin-top: 50px;
     .SubmitBtn{
       width: 100%;
       margin-top: 2rem;
       margin-bottom: 2rem;
     }
+  }
+  .ticketTable{
+    width: 100%;
+    margin-bottom: 20px;
+    // border: 1px solid;
   }
 }
