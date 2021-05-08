@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import Axios from 'axios'
 
 const Client = () => {
-  const url = '  https://c1tm95660k.execute-api.us-east-1.amazonaws.com/dev/conseguirticket';
+  const url = '  https://c1tm95660k.execute-api.us-east-1.amazonaws.com/dev/subirticket';
 
   // Setting the original dataset to null
   const [data, setData] = useState({
@@ -45,12 +45,13 @@ const Client = () => {
   const submit = (e) => {
     randomID()
     e.preventDefault()
+    console.log('data');
     console.log(data);
     Axios.post(url, {
       ticket: {
         id: data.id,
         summary: data.summary,
-        email:data.email,
+        email:'',
         date: data.date,
         description: data.description,
         assignedDev2: "",
@@ -71,11 +72,7 @@ const Client = () => {
       <Form className='ClientForm'>
         <Form.Group >
           <Form.Label>Summary</Form.Label>
-          <Form.Control onChange={(e) => myFunction(e)} type="text" placeholder="Please enter the Client´s name" id='summary' />
-        </Form.Group>
-        <Form.Group >
-          <Form.Label>Email</Form.Label>
-          <Form.Control onChange={(e) => myFunction(e)} type="text" placeholder="Please enter the Client´s name" id='email' />
+          <Form.Control onChange={(e) => myFunction(e)} type="text" placeholder="Please enter a summary of the issue" id='summary' />
         </Form.Group>
         <Form.Group >
           <Form.Label>Date</Form.Label>
