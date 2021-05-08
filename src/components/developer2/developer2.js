@@ -8,6 +8,7 @@ import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
 
 const Developer2 = () => {
+  const url = 'https://c1tm95660k.execute-api.us-east-1.amazonaws.com/dev/updateticket';
   const [modalIsOpen, setIsOpen] = useState(false);
   const [users, setUsers] = useState([])
   function openModal(e) {
@@ -17,6 +18,10 @@ const Developer2 = () => {
   function closeModal() {
     setIsOpen(false);
   }
+  const print = () => {
+    const test = document.getElementById('summary')
+    console.log(test.innerHTML);
+  }
 
   const customStyles = {
     content: {
@@ -25,7 +30,8 @@ const Developer2 = () => {
       right: 'auto',
       bottom: 'auto',
       marginRight: '-50%',
-      transform: 'translate(-50%, -50%)'
+      transform: 'translate(-50%, -50%)',
+      width: '500px'
     }
   };
   useEffect(() => {
@@ -38,8 +44,49 @@ const Developer2 = () => {
         console.log(err)
       })
   }, [])
-  function test(a) {
-    console.log(a.value);
+
+  const [data, setData] = useState({
+    ticket: {
+      id: '',
+      summary: '',
+      email: '',
+      date: '',
+      description: '',
+      assignedDev2: "",
+      assignedDev3: "",
+      attachedFiles: ""
+    }
+  })
+
+  const myFunction = (e) => {
+    const newData = { ...data }
+    newData[e.target.id] = e.target.value
+    setData(newData)
+  }
+
+  const submit = (e) => {
+    const id = document.getElementById('id').innerHTML
+    e.preventDefault()
+    console.log('id');
+    console.log(id);
+    axios.put(url, {
+      ticket: {
+        id: id,
+        summary: "",
+        email: data.email,
+        date: "",
+        description: data.description,
+        assignedDev2: data.assignedDev2,
+        assignedDev3: data.assignedDev3,
+        attachedFiles: data.attachedFiles
+      }
+    }).then(res => {
+      console.log('result!');
+      console.log(res.data);
+    }).catch(err => {
+      return console.log(err);
+    })
+
   }
 
   return (
@@ -50,9 +97,33 @@ const Developer2 = () => {
         style={customStyles}
         contentLabel="Example Modal"
       >
-        <h2 >Hello</h2>
-        <button onClick={closeModal}>close</button>
-        <div>I am a modal</div>
+        <Container className='ClientContainer' onSubmit={submit}>
+          <Form className='ClientForm'>
+            <Form.Group >
+              <Form.Label>Assigned Dev2</Form.Label>
+              <Form.Control onChange={(e) => myFunction(e)} type="text" placeholder="Please enter the developer 2 " id='assignedDev2' />
+            </Form.Group>
+            <Form.Group >
+              <Form.Label>Assigned Dev3</Form.Label>
+              <Form.Control onChange={(e) => myFunction(e)} type="text" placeholder="Please enter the developer 3 " id='assignedDev3' />
+            </Form.Group>
+            <Form.Group >
+              <Form.Label>Attached Files</Form.Label>
+              <Form.Control onChange={(e) => myFunction(e)} type="text" placeholder="Enter the date" id='attachedFiles' />
+            </Form.Group>
+            <Form.Group >
+              <Form.Label>Description</Form.Label>
+              <Form.Control onChange={(e) => myFunction(e)} as="textarea" placeholder="Please describe the issue" id='description' />
+            </Form.Group>
+            <Form.Group >
+              <Form.Label>Email</Form.Label>
+              <Form.Control onChange={(e) => myFunction(e)} type="text" placeholder="Please enter the email " id='email' />
+            </Form.Group>
+            <Button variant="contained" color="primary" type="submit" className='SubmitBtn'>
+              Submit
+        </Button>
+          </Form>
+        </Container>
       </Modal>
       <div>
         {
@@ -61,21 +132,23 @@ const Developer2 = () => {
               <table className='ticketTable'>
                 <tr>
                   <th>ID</th>
-                  <th>Name</th>
+                  <th>Summary</th>
                   <th>Date</th>
                   <th>Assigned Dev 2</th>
                   <th>Assigned Dev 3</th>
+                  <th>Email</th>
                   <th>Description</th>
                   <th>Actions</th>
                 </tr>
                 <tr>
-                  <td onClick={test}>{users.id}</td>
-                  <td>{users.name}</td>
+                  <td id='id'>{users.id}</td>
+                  <td onClick={print}>{users.summary}</td>
                   <td>{users.date}</td>
                   <td>{users.assignedDev2}</td>
                   <td>{users.assignedDev3}</td>
+                  <td >{users.email}</td>
                   <td>{users.description}</td>
-                  <td><a href=''>Edit</a><button  >Show</button> </td>
+                  <td><Button href='' onClick={openModal}>Edit</Button> </td>
                 </tr>
               </table>
             );
