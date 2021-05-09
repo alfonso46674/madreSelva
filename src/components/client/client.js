@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Form, Container } from 'react-bootstrap';
 import './client.scss';
 import Button from '@material-ui/core/Button';
-import Axios from 'axios'
+import axios from 'axios'
 import Modal from 'react-modal';
 
 const Client = () => {
   const url = '  https://c1tm95660k.execute-api.us-east-1.amazonaws.com/dev/subirticket';
+  const urlTicketId = 'https://c1tm95660k.execute-api.us-east-1.amazonaws.com/dev/conseguirticketid'
 
   const customStyles = {
     content: {
@@ -34,6 +35,7 @@ const Client = () => {
   })
   const [modalIsOpen, setIsOpen] = useState(false);
   const [resultID, setResultID] = useState('')
+  const [searchedTicket, setSearchedTicket] = useState([])
   function openModal() {
     setIsOpen(true);
   }
@@ -66,7 +68,7 @@ const Client = () => {
     e.preventDefault()
     console.log('data');
     console.log(data);
-    Axios.post(url, {
+    axios.post(url, {
       ticket: {
         id: data.id,
         summary: data.summary,
@@ -87,6 +89,26 @@ const Client = () => {
     setResultID(data.id)
     openModal()
     randomID()
+  }
+
+  const getTicketByID = (e) => {
+    e.preventDefault()
+    const ticketId = document.getElementById('ticketSearch').value
+    e.preventDefault()
+    axios.get(urlTicketId,
+      {
+        params: {
+          id: ticketId
+        }
+      }
+    ).then(res => {
+      console.log('Search by id completed!');
+      console.log(res.data[0]);
+      setSearchedTicket(res.data)
+    }).catch(err => {
+      console.log('Error searching by id');
+      console.log(err);
+    })
   }
 
 
@@ -125,16 +147,33 @@ const Client = () => {
         </Button>
         </Form>
       </Container>
-      <Container className='ClientContainer' onSubmit={submit}>
+      <Container className='ClientContainer' onSubmit={getTicketByID}>
         <Form className='ClientForm'>
           <Form.Group >
-            <Form.Label>Search for your ticket</Form.Label>
+            <Form.Label style={{fontWeight:'bold'}}>Search for your ticket</Form.Label>
             <Form.Control type="text" placeholder="Please enter your ticket ID:" id='ticketSearch' />
           </Form.Group>
           <Button variant="contained" color="primary" type="submit" className='SubmitBtn'>
             Search
         </Button>
         </Form>
+        <table className='ticketTable'>
+          <tr>
+            <th>ID</th>
+            <th>Summary</th>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Attached files</th>
+          </tr>
+          <tr>
+            <td >{searchedTicket[0] ? searchedTicket[0].id : <span>Waiting...</span>}</td>
+            <td >{searchedTicket[0] ? searchedTicket[0].summary : <span></span>}</td>
+            <td >{searchedTicket[0] ? searchedTicket[0].date : <span></span>}</td>
+            <td >{searchedTicket[0] ? searchedTicket[0].description : <span></span>}</td>
+            <td >{searchedTicket[0] ? searchedTicket[0].attachedFiles : <span></span>}</td>
+          </tr>
+        </table>
+        <h1>{resultID}</h1>
       </Container>
     </>
 
