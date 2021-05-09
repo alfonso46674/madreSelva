@@ -69,16 +69,17 @@ const Developer2 = () => {
     e.preventDefault()
     console.log('id');
     console.log(id);
+    console.log(data.attachedFiles)
     axios.put(url, {
       ticket: {
         id: id,
         summary: "",
         email: data.email,
         date: "",
-        description: data.description,
-        assignedDev2: data.assignedDev2,
-        assignedDev3: data.assignedDev3,
-        attachedFiles: data.attachedFiles
+        description: (data.description === undefined) ? '' : data.description,
+        assignedDev2: (data.assignedDev2 === undefined) ? '' : data.assignedDev2,
+        assignedDev3: (data.assignedDev3 === undefined) ? '' : data.assignedDev3,
+        attachedFiles: (data.attachedFiles === undefined) ? '' : data.attachedFiles
       }
     }).then(res => {
       console.log('result!');
@@ -101,23 +102,23 @@ const Developer2 = () => {
           <Form className='ClientForm'>
             <Form.Group >
               <Form.Label>Assigned Dev2</Form.Label>
-              <Form.Control onChange={(e) => myFunction(e)} type="text" placeholder="Please enter the developer 2 " id='assignedDev2' />
+              <Form.Control onChange={(e) => myFunction(e)} type="text" placeholder="Please enter the L2 developer's name " id='assignedDev2' />
             </Form.Group>
             <Form.Group >
               <Form.Label>Assigned Dev3</Form.Label>
-              <Form.Control onChange={(e) => myFunction(e)} type="text" placeholder="Please enter the developer 3 " id='assignedDev3' />
+              <Form.Control onChange={(e) => myFunction(e)} type="text" placeholder="Please enter the L2 developer's name " id='assignedDev3' />
             </Form.Group>
-            <Form.Group >
+            {/* <Form.Group >
               <Form.Label>Attached Files</Form.Label>
               <Form.Control onChange={(e) => myFunction(e)} type="text" placeholder="Enter the date" id='attachedFiles' />
-            </Form.Group>
+            </Form.Group> */}
             <Form.Group >
               <Form.Label>Description</Form.Label>
               <Form.Control onChange={(e) => myFunction(e)} as="textarea" placeholder="Please describe the issue" id='description' />
             </Form.Group>
             <Form.Group >
-              <Form.Label>Email</Form.Label>
-              <Form.Control onChange={(e) => myFunction(e)} type="text" placeholder="Please enter the email " id='email' />
+              <Form.Label>Dev3 email</Form.Label>
+              <Form.Control onChange={(e) => myFunction(e)} type="text" placeholder="Please enter the L3 developer's email " id='email' />
             </Form.Group>
             <Button variant="contained" color="primary" type="submit" className='SubmitBtn'>
               Submit
@@ -138,9 +139,9 @@ const Developer2 = () => {
                   <th>ID</th>
                   <th>Summary</th>
                   <th>Date</th>
-                  <th>Assigned Dev 2</th>
-                  <th>Assigned Dev 3</th>
-                  <th>Email</th>
+                  <th>Assigned L2 developer</th>
+                  <th>Assigned L3 developer</th>
+                  <th>L3 dev email</th>
                   <th>Description</th>
                   <th>Actions</th>
                 </tr>

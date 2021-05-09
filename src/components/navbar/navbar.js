@@ -14,7 +14,7 @@ const Navbar = ({ user, setUser }) => {
 
   return (
     <Row className='Navbar'>
-      <Col sm={8} className='Slogan'> Ticket solution sistem</Col>
+      <Col sm={8} className='Slogan'> Ticket solution system</Col>
       <Col sm={2} className='Client'>
         <Button onClick={handleClient}>Cliente</Button>
       </Col>
