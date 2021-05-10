@@ -46,7 +46,7 @@ const Client = () => {
   // Function that generates a random id number and adds it to every submit form
   const randomID = () => {
     var myElement = document.getElementById("id")
-    myElement.value = Math.floor((Math.random() * 100) + 1)
+    myElement.value = Math.floor((Math.random() * 10000) + 1)
     const newData = { ...data }
     newData.id = myElement.value
     setData(newData)
