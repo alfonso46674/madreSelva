@@ -173,7 +173,7 @@ const Client = () => {
             <td >{searchedTicket[0] ? searchedTicket[0].attachedFiles : <span></span>}</td>
           </tr>
         </table>
-        <h1>{resultID}</h1>
+        {/* <h1>{resultID}</h1> */}
       </Container>
     </>
 
