@@ -74,7 +74,7 @@ const Developer2 = () => {
       ticket: {
         id: id,
         summary: "",
-        email: data.email,
+        email: (data.email === undefined) ? '' : data.email,
         date: "",
         description: (data.description === undefined) ? '' : data.description,
         assignedDev2: (data.assignedDev2 === undefined) ? '' : data.assignedDev2,
