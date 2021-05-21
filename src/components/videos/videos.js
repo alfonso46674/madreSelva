@@ -1,13 +1,41 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col, Form } from 'react-bootstrap';
 import './videos.scss';
-
-
+import Button from '@material-ui/core/Button';
+import { DropdownButton, Dropdown } from 'react-bootstrap'
 const Videos = () => {
 
   return (
-    <Container className='UploadsContainer'>
-      <div>This are the videos</div>
+    <Container className='VideosContainer'>
+      <Form className='VideosForm'>
+        <Row>
+          <Col sm={4} className=''>
+            <Form.Group >
+              <Form.Label>Filtrar por título</Form.Label>
+              <Form.Control type="text" placeholder="Escriba el título que quiera buscar" id='summary' />
+            </Form.Group>
+          </Col>
+          <Col sm={4} className=''>
+            <Form.Group >
+              <Form.Label>Filtrar por autor</Form.Label>
+              <Form.Control type="texxt" placeholder="Escriba el nombre del autor" id='date' />
+            </Form.Group>
+          </Col>
+          <Col sm={4} className=''>
+            <Form.Group >
+              <Form.Label>Filtrar por categorías</Form.Label>
+              <DropdownButton id="dropdown-basic-button" title="Seleccionar">
+                <Dropdown.Item >Categoría 1</Dropdown.Item>
+                <Dropdown.Item>Categoría 2</Dropdown.Item>
+                <Dropdown.Item>Categoría 3</Dropdown.Item>
+              </DropdownButton>
+            </Form.Group>
+          </Col>
+        </Row>
+        <Button variant="contained" color="primary" type="submit" className='SubmitBtn' >
+          Submit
+        </Button>
+      </Form>
     </Container>
   )
 }
