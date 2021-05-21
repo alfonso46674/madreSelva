@@ -1,7 +1,7 @@
 import { React, useState } from 'react';
 import Navbar from '../../components/navbar/navbar';
 import './videos.scss';
-import Videos from '../../components/navbar/navbar';
+import Videos from '../../components/videos/videos';
 
 const VideosPage = () => {
   const [user, setUser] = useState(1)
