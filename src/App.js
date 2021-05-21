@@ -1,5 +1,8 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import  HomePage  from './containers/home/home';
+import  Videos  from './containers/videos/videos/videos';
+import Contact from './containers/contact/contact';
+import Admin from './containers/admin/admin';
+import Uploads from './containers/uploads/uploads';
 import './App.scss';
 
 function App() {
@@ -8,7 +11,10 @@ function App() {
       <Router>
         <div className='content'>
           <Switch>
-            <Route exact path="/" render={() => <HomePage />} />
+            <Route exact path="/" render={() => <Videos />} />
+            <Route exact path="/uploads" render={() => <Uploads />} />
+            <Route exact path="/admin" render={() => <Admin />} />
+            <Route exact path="/contact" render={() => <Contact />} />
           </Switch>
         </div>
       </Router>

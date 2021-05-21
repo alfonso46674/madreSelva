@@ -14,12 +14,18 @@ const Navbar = ({ user, setUser }) => {
 
   return (
     <Row className='Navbar'>
-      <Col sm={8} className='Slogan'> Ticket solution system</Col>
-      <Col sm={2} className='Client'>
-        <Button onClick={handleClient}>Cliente</Button>
+      <Col sm={8} className='Slogan'> Madre Selva</Col>
+      <Col sm={1} className='Client'>
+        <Button onClick={handleClient}>Videos</Button>
       </Col>
-      <Col sm={2} className='Developer2'>
-        <Button onClick={handleDevelop}>Developer</Button>
+      <Col sm={1} className='Developer2'>
+        <Button onClick={handleDevelop}>Uploads</Button>
+      </Col>
+      <Col sm={1} >
+        <Button >Conócenos</Button>
+      </Col>
+      <Col sm={1} >
+        <Button >Chanti</Button>
       </Col>
     </Row>
   )

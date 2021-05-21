@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Container } from 'react-bootstrap';
-import './client.scss';
+import './videos.scss';
 import Button from '@material-ui/core/Button';
 import axios from 'axios'
 import Modal from 'react-modal';
 
-const Client = () => {
+const Videos = () => {
   const url = '  https://c1tm95660k.execute-api.us-east-1.amazonaws.com/dev/subirticket';
   const urlTicketId = 'https://c1tm95660k.execute-api.us-east-1.amazonaws.com/dev/conseguirticketid'
 
@@ -114,18 +114,18 @@ const Client = () => {
 
   return (
     <>
-      <Container className='ClientContainer' onSubmit={submit}>
+      <Container className='VideosContainer' onSubmit={submit}>
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModal}
           style={customStyles}
           contentLabel="Example Modal"
         >
-          <Container className='ClientContainer' onSubmit={submit}>
+          <Container className='VideosContainer' onSubmit={submit}>
             <h1>Your ticket ID is:{resultID} </h1>
           </Container>
         </Modal>
-        <Form className='ClientForm'>
+        <Form className='VideosForm'>
           <Form.Group >
             <Form.Label>Summary</Form.Label>
             <Form.Control onChange={(e) => myFunction(e)} type="text" placeholder="Please enter a summary of the issue" id='summary' />
@@ -140,15 +140,15 @@ const Client = () => {
           </Form.Group>
           <Form.Group style={{ visibility: 'hidden' }}>
             <Form.Label>ID</Form.Label>
-            <Form.Control onChange={(e) => myFunction(e)} type="text" placeholder="Please enter the Client´s name" id='id' />
+            <Form.Control onChange={(e) => myFunction(e)} type="text" placeholder="Please enter the Videos´s name" id='id' />
           </Form.Group>
           <Button variant="contained" color="primary" type="submit" className='SubmitBtn' >
             Submit
         </Button>
         </Form>
       </Container>
-      <Container className='ClientContainer' onSubmit={getTicketByID}>
-        <Form className='ClientForm'>
+      <Container className='VideosContainer' onSubmit={getTicketByID}>
+        <Form className='VideosForm'>
           <Form.Group >
             <Form.Label style={{fontWeight:'bold'}}>Search for your ticket</Form.Label>
             <Form.Control type="text" placeholder="Please enter your ticket ID:" id='ticketSearch' />
@@ -180,4 +180,4 @@ const Client = () => {
   )
 }
 
-export default Client;
+export default Videos;
