@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import  Videos  from './containers/videos/videos/videos';
+import  Videos  from './containers/videos/videos';
 import Contact from './containers/contact/contact';
 import Admin from './containers/admin/admin';
 import Uploads from './containers/uploads/uploads';
