@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col } from 'react-bootstrap';
 import './navbar.scss';
 import Button from '@material-ui/core/Button';
-
+import { Link } from 'react-router-dom'
 const Navbar = ({ user, setUser }) => {
   const handleDevelop = () => {
     setUser(2);
@@ -16,16 +16,16 @@ const Navbar = ({ user, setUser }) => {
     <Row className='Navbar'>
       <Col sm={8} className='Slogan'> Madre Selva</Col>
       <Col sm={1} className='Client'>
-        <Button onClick={handleClient}>Videos</Button>
+        <Button><Link to='/'>Videos</Link></Button>
       </Col>
       <Col sm={1} className='Developer2'>
-        <Button onClick={handleDevelop}>Uploads</Button>
+        <Button><Link to='/uploads'>Uploads</Link></Button>
       </Col>
       <Col sm={1} >
-        <Button >Conócenos</Button>
+        <Button ><Link to='/contact'>Conócenos</Link></Button>
       </Col>
       <Col sm={1} >
-        <Button >Chanti</Button>
+        <Button ><Link to='/admin'>Admin</Link></Button>
       </Col>
     </Row>
   )
