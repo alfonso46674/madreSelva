@@ -4,13 +4,6 @@ import './navbar.scss';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom'
 const Navbar = ({ user, setUser }) => {
-  const handleDevelop = () => {
-    setUser(2);
-  }
-
-  const handleClient = () => {
-    setUser(1);
-  }
 
   return (
     <Row className='Navbar'>

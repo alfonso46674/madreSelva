@@ -1,6 +1,7 @@
 import React from 'react';
 import Uploads from '../../components/uploads/uploads';
 import Navbar from '../../components/navbar/navbar';
+import './uploads.scss'
 
 const UploadsPage = () => {
   return(

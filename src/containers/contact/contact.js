@@ -1,6 +1,7 @@
 import React from 'react';
 import Contact from '../../components/contact/contact';
 import Navbar from '../../components/navbar/navbar';
+import './contact.scss'
 
 const ContactPage = () => {
   return(
