@@ -1,6 +1,5 @@
 const router = require('express').Router()
 
-const globby = require('globby')
 const multer = require('multer')
 const path = require('path')
 const fs = require('fs')
@@ -18,7 +17,10 @@ const fs = require('fs')
     //file filter that only accepts pdfs
     const fileFilter = (req,file,cb)=>{
         if(file.mimetype === 'application/pdf'){
-            cb(null,true)
+
+            //Verify that file has not been already uploaded, if so then dont store anything
+            if(verifyIfFileExists('server/files',file.originalname)) cb(null,false)
+            else cb(null,true)
         }else{
             cb(null,false) // ignore other files
         }
@@ -32,12 +34,12 @@ const fs = require('fs')
     })
 
     //saves a file in /files with the aid of multer, and save its related information in the DB
-    router.post('/pdfUpload',uploadFile.single('document'),(req,res)=>{
+    router.post('/pdf',uploadFile.single('document'),(req,res)=>{
 
         //return error if there is no pdf file
-        if(req.file == undefined) res.status(400).send({'Error':'No file provided or invalid file format'})
+        if(req.file === undefined) res.status(400).send({'Error':'No file provided, invalid file format or file has already been uploaded'})
         else {
-
+            
             // console.log(req.file);
             //verify body contents
             let {abstract,creatorName,documentName,category} = req.body
@@ -55,7 +57,8 @@ const fs = require('fs')
                     abstract: abstract,
                     category: category,
                     filePath: req.file.path,
-                    status: 'pending'
+                    status: 'pending',
+                    videoLink: null
                 }
 
                 //append the data to the db.json
@@ -75,31 +78,21 @@ const fs = require('fs')
     })
 
     //only saves information regarding the video in the DB
-    router.post('/videoUpload',uploadFile.single('document'),(req,res)=>{
+    router.post('/videoLink',(req,res)=>{
 
         console.log(req.file);
         console.log(req.body);
         res.status(200).send('Document uploaded')
     })
 
-//shows all of the stored files in /files
-router.get('/show', async (req,res)=>{
-    const files = await globby(['**server/files/*'])
-    // console.log(files);
-    const filesRenamed = files.map(function(x){
-        return x.replace("server/files/",'')
-    })
-    res.send(filesRenamed)
-})
-
-//downloads a file given the input req.body.filename
-router.post('/download', (req,res)=>{
-    //obtain the path of the filename
-    let filePath = path.join(__dirname,`../files/${req.body.filename}`)
-    //if the provided filename exists in /files
-    if(fs.statSync(filePath).isFile()){
-        res.download(filePath)
+    //verifies if a file exists in a given directory
+    function verifyIfFileExists(dir,fileToVerify){
+        
+        const files = fs.readdirSync(dir)
+        for(const file of files){
+            if(file === fileToVerify) return true
+        }
+        return false
     }
-})
 
 module.exports = router

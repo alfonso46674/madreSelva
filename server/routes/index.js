@@ -1,9 +1,10 @@
 const router = require('express').Router()
 
-const documentsRoute = require('./documents')
+const uploadsRoute = require('./uploads')
+const filesRoute = require('./files')
 
-
-router.use('/documents',documentsRoute)
+router.use('/uploads',uploadsRoute)
+router.use('/files',filesRoute)
 
 //default get route
 router.get('/',(req,res)=>{
