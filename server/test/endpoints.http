@@ -1,0 +1,9 @@
+@host = http://localhost:8080
+
+GET {{host}}/test
+
+GET {{host}}/muscle
+Content-Type: 'multipart/form-data'
+Authorization: 'acb3a181f5c8e917244a3908214dd57aa6753442'
+
+

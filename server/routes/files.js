@@ -25,4 +25,14 @@ router.post('/download', (req,res)=>{
     }
 })
 
+//downloads the agreement letter
+router.get('/agreement',(req,res)=>{
+    let filePath = path.join(__dirname,'../staticFiles/CartaUsoDeContenidos.docx')
+
+    if(fs.statSync(filePath).isFile()){
+        res.status(200).download(filePath)
+    }
+    else res.status(400).send({'Error':'No agreement letter was found'})
+})
+
 module.exports = router
