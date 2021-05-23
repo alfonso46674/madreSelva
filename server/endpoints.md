@@ -12,7 +12,8 @@ Body to send:
         creatorName: -name of the author-,
         abstract: -small summary of the pdf-,
         documentName: -file name-,
-        category: -category of the document-
+        category: -category of the document-,
+        agreement: -pdf agreement letter-
     }
 
 Note: petition must be enctype="multipart/form-data"  

@@ -33,11 +33,18 @@ const fs = require('fs')
         fileFilter:fileFilter
     })
 
-    //saves a file in /files with the aid of multer, and save its related information in the DB
-    router.post('/pdf',uploadFile.single('document'),(req,res)=>{
-
-        //return error if there is no pdf file
-        if(req.file === undefined) res.status(400).send({'Error':'No file provided, invalid file format or file has already been uploaded'})
+    //saves a file and agreementLetter in /files with the aid of multer, and save its related information in the DB
+    router.post('/pdf',uploadFile.fields([{
+        name:'document',maxCount:1
+        },{
+        name: 'agreement', maxCount:1
+        }]),(req,res)=>{
+            //return error if either the agreement or pdf files were not uploaded
+        console.log(req.files);
+        if (req.files === undefined || Object.entries(req.files).length === 0) res.status(400).send({'Error':'No files provided, invalid file format or files have already been uploaded'})
+        else if(req.files.document[0] === undefined ) res.status(400).send({'Error':'No pdf document was provided, invalid file format or file has already been uploaded'})
+        else if(req.files.agreement[0] === undefined) res.status(400).send({'Error':'No agreement letter was provided, invalid file format or file has already been uploaded'})
+    
         else {
             
             // console.log(req.file);
@@ -56,7 +63,8 @@ const fs = require('fs')
                     documentName: documentName,
                     abstract: abstract,
                     category: category,
-                    filePath: req.file.path,
+                    filePath: req.files.document[0].path,
+                    agreement: req.files.agreement[0].path,
                     status: 'pending',
                     videoLink: null
                 }
