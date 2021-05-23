@@ -7,7 +7,7 @@ const AdminPage = () => {
   return(
     <div className='Admin'>
       <Navbar/>
-      <div className='Title'>MADRE SELVA</div>
+      <div className='Title'>MADRESELVA</div>
       <Admin/>
     </div>
   )

@@ -25,9 +25,11 @@ const Videos = () => {
             <Form.Group >
               <Form.Label>Filtrar por categorías</Form.Label>
               <DropdownButton id="dropdown-basic-button" title="Seleccionar">
-                <Dropdown.Item >Categoría 1</Dropdown.Item>
-                <Dropdown.Item>Categoría 2</Dropdown.Item>
-                <Dropdown.Item>Categoría 3</Dropdown.Item>
+                <Dropdown.Item >Crítica</Dropdown.Item>
+                <Dropdown.Item>Educación</Dropdown.Item>
+                <Dropdown.Item>Difusión</Dropdown.Item>
+                <Dropdown.Item>Investigación</Dropdown.Item>
+                <Dropdown.Item>Otros</Dropdown.Item>
               </DropdownButton>
             </Form.Group>
           </Col>

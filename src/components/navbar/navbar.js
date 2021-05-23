@@ -7,12 +7,12 @@ const Navbar = ({ user, setUser }) => {
 
   return (
     <Row className='Navbar'>
-      <Col sm={8} className='Slogan'> Madre Selva</Col>
+      <Col sm={8} className='Slogan'> Madreselva</Col>
       <Col sm={1} className='Client'>
-        <Button><Link to='/'>Videos</Link></Button>
+        <Button><Link to='/'>Inicio</Link></Button>
       </Col>
       <Col sm={1} className='Developer2'>
-        <Button><Link to='/uploads'>Uploads</Link></Button>
+        <Button><Link to='/uploads'>Publicar</Link></Button>
       </Col>
       <Col sm={1} >
         <Button ><Link to='/contact'>Conócenos</Link></Button>
