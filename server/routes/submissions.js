@@ -1,6 +1,20 @@
 const router = require('express').Router()
 
 const fs = require('fs')
+//return all submissions
+router.get('/all',(req,res)=>{
+    
+    try {
+        //read db.json
+        let dbJSON = JSON.parse(fs.readFileSync('server/DB/db.json'))
+
+        res.status(200).send(dbJSON)
+        
+    } catch (error) {
+        res.status(400).send({'Error':error})
+    }
+})
+
 
 //return accepted submissions
 router.get('/accepted',(req,res)=>{
