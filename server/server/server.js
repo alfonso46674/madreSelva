@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const cors = require('cors')
 
 //import routes to use
 const router = require('../routes')
@@ -17,6 +18,8 @@ const {json, urlencoded} = express
 //basic parse configuration
 app.use(json());
 app.use(urlencoded({extended: false}));
+const corsOptions = {origin: '*',optionSuccessStatus:200}
+app.use(cors(corsOptions))
 
 
 

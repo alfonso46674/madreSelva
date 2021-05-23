@@ -7,7 +7,7 @@ router.use('/uploads',uploadsRoute)
 router.use('/files',filesRoute)
 
 //default get route
-router.get('/',(req,res)=>{
+router.get('/test',(req,res)=>{
     res.send({'test':'Hello World'})
 })
 
