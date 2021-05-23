@@ -1,9 +1,9 @@
 const router = require('express').Router()
 
-const uploadsRoute = require('./uploads')
+const publishRoute = require('./publish')
 const filesRoute = require('./files')
 
-router.use('/uploads',uploadsRoute)
+router.use('/publish',publishRoute)
 router.use('/files',filesRoute)
 
 //default get route
