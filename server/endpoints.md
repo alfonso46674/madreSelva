@@ -1,5 +1,19 @@
 # List of endpoints for the backend
 
+## Example of a stored object in the DB
+
+    {
+        "creatorName": "Alfonso",
+        "documentName": "Practica3",
+        "abstract": "This is a test description",
+        "category": "educacion",
+        "filePath": "C:\\Users\\Alponcho\\Documents\\Proyectos\\ArtWebPage\\madreSelva\\server\\files\\Practica3Clase.pdf",
+        "agreementPath": "C:\\Users\\Alponcho\\Documents\\Proyectos\\ArtWebPage\\madreSelva\\server\\files\agreement.pdf",
+        "status": "pending",
+        "videoLink": null        
+    }
+
+
 ## Uploading files
 
 ### Upload a pdf
@@ -11,7 +25,7 @@ Body to send:
         document: -pdf file to upload-,
         creatorName: -name of the author-,
         abstract: -small summary of the pdf-,
-        documentName: -file name-,
+        Title: -document title-,
         category: -category of the document-,
         agreement: -pdf agreement letter-
     }
@@ -28,7 +42,7 @@ Body to send:
         videoLink: -youtube link to the video-,
         creatorName: -name of the author-,
         abstract: -small summary of the pdf-,
-        documentName: -file name-,
+        Ttile: -video title-,
         category: -category of the document-
     }
 

@@ -49,8 +49,8 @@ const fs = require('fs')
             
             // console.log(req.file);
             //verify body contents
-            let {abstract,creatorName,documentName,category} = req.body
-            if(abstract !== undefined && creatorName !== undefined && documentName !== undefined && category !== undefined){
+            let {abstract,creatorName,Title,category} = req.body
+            if(abstract !== undefined && creatorName !== undefined && Title !== undefined && category !== undefined){
                 
                 //Save in the DB the parameters, along with the file path for future access
 
@@ -60,11 +60,11 @@ const fs = require('fs')
                 //create the new data to store in the db.json
                 let data = {
                     creatorName : creatorName,
-                    documentName: documentName,
+                    Title: Title,
                     abstract: abstract,
                     category: category,
                     filePath: req.files.document[0].path,
-                    agreement: req.files.agreement[0].path,
+                    agreementPath: req.files.agreement[0].path,
                     status: 'pending',
                     videoLink: null
                 }
@@ -80,17 +80,53 @@ const fs = require('fs')
             else{
                 //remove the file if there are missing parameters
                 fs.unlinkSync(req.file.path)
-                res.status(400).send({'Error':'Missing parameters -abstract,creatorName,documentName or category-'})
+                res.status(400).send({'Error':'Missing parameters -abstract,creatorName,Title or category-'})
             }
         }
     })
 
     //only saves information regarding the video in the DB
-    router.post('/videoLink',(req,res)=>{
+    router.post('/videoLink',uploadFile.single('agreement'),(req,res)=>{
 
-        console.log(req.file);
-        console.log(req.body);
-        res.status(200).send('Document uploaded')
+        // console.log(req.file);
+        if(req.file === undefined) res.status(400).send({'Error':'No agreement letter was provided, invalid file format or file has already been uploaded'})
+        else {
+
+            //verify body contents
+            let {abstract,creatorName,Title,category,videoLink} = req.body
+            if(abstract !== undefined && creatorName !== undefined && Title !== undefined && category !== undefined && videoLink !== undefined){
+                
+                //Save in the DB the parameters, along with the agreement file path for future access
+
+                //read the db.json and parse it to a js object
+                let dbJSON = JSON.parse(fs.readFileSync('server/DB/db.json'))
+
+                //create the new data to store in the db.json
+                let data = {
+                    creatorName : creatorName,
+                    Title: Title,
+                    abstract: abstract,
+                    category: category,
+                    filePath: null,
+                    agreementPath: req.file.path,
+                    status: 'pending',
+                    videoLink: videoLink
+                }
+
+                //append the data to the db.json
+                dbJSON.push(data)
+                //save the new version of the db by overwriting the old db.json
+                fs.writeFileSync('server/DB/db.json',JSON.stringify(dbJSON))
+                
+                res.status(200).send('Document uploaded')
+            }
+             //return error if one parameter is not provided
+             else{
+                //remove the file if there are missing parameters
+                fs.unlinkSync(req.file.path)
+                res.status(400).send({'Error':'Missing parameters -abstract,creatorName,Title or category-'})
+            }
+        }
     })
 
     //verifies if a file exists in a given directory
