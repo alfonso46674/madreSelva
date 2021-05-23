@@ -42,8 +42,18 @@ const fs = require('fs')
             //return error if either the agreement or pdf files were not uploaded
         console.log(req.files);
         if (req.files === undefined || Object.entries(req.files).length === 0) res.status(400).send({'Error':'No files provided, invalid file format or files have already been uploaded'})
-        else if(req.files.document[0] === undefined ) res.status(400).send({'Error':'No pdf document was provided, invalid file format or file has already been uploaded'})
-        else if(req.files.agreement[0] === undefined) res.status(400).send({'Error':'No agreement letter was provided, invalid file format or file has already been uploaded'})
+        //if only the document was provided, then delete it and return error
+        else if(Object.entries(req.files).length === 1 && req.files.document !== undefined) {
+            //delete the provided file, either document or agreement
+            fs.unlinkSync(req.files.document[0].path)
+            res.status(400).send({'Error':'Missing agreement letter or invalid format'})
+        }
+        //if only the agreement was provided, then delete it and return error
+        else if(Object.entries(req.files).length === 1 && req.files.agreement !== undefined) {
+            //delete the provided file, either document or agreement
+            fs.unlinkSync(req.files.agreement[0].path)
+            res.status(400).send({'Error':'Missing pdf document or invalid format'})
+        }
     
         else {
             
@@ -78,8 +88,9 @@ const fs = require('fs')
             }
             //return error if one parameter is not provided
             else{
-                //remove the file if there are missing parameters
-                fs.unlinkSync(req.file.path)
+                //remove the files if there are missing parameters
+                fs.unlinkSync(req.files.document[0].path)
+                fs.unlinkSync(req.files.agreement[0].path)
                 res.status(400).send({'Error':'Missing parameters -abstract,creatorName,Title or category-'})
             }
         }
