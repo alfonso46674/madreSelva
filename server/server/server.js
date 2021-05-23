@@ -11,7 +11,7 @@ const PORT = 8080
 const HOST = '0.0.0.0'
 
 //server static build of react project
-app.use(express.static(path.normalize('build')))
+// app.use(express.static(path.normalize('build')))
 
 const {json, urlencoded} = express
 
