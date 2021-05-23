@@ -7,7 +7,7 @@ const ContactPage = () => {
   return(
     <div className='Contact'>
       <Navbar/>
-      <div className='Title'>MADRE SELVA</div>
+      <div className='Title'>MADRESELVA</div>
       <Contact/>
     </div>
   )
