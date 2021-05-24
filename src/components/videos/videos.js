@@ -1,9 +1,33 @@
-import React from 'react';
+import {React,useEffect} from 'react';
 import { Container, Row, Col, Form } from 'react-bootstrap';
 import './videos.scss';
 import Button from '@material-ui/core/Button';
 import { DropdownButton, Dropdown } from 'react-bootstrap'
+import axios from 'axios'
+
 const Videos = () => {
+  const url = 'http://localhost:8080/test'
+  const submit = (e)=>{
+    axios.get(url)
+    .then(res=>{
+      console.log(res.data);
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+
+  }
+
+  useEffect(()=>{
+    axios.get(url)
+    .then(res=>{
+      console.log(res.data);
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+  },[])
+
 
   return (
     <Container className='VideosContainer'>
