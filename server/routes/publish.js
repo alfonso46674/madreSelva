@@ -40,7 +40,7 @@ const fs = require('fs')
         name: 'agreement', maxCount:1
         }]),(req,res)=>{
             //return error if either the agreement or pdf files were not uploaded
-        console.log(req.files);
+        // console.log(req.files);
         if (req.files === undefined || Object.entries(req.files).length === 0) res.status(400).send({'Error':'No files provided, invalid file format or files have already been uploaded'})
         //if only the document was provided, then delete it and return error
         else if(Object.entries(req.files).length === 1 && req.files.document !== undefined) {
@@ -69,6 +69,7 @@ const fs = require('fs')
 
                 //create the new data to store in the db.json
                 let data = {
+                    id:dbJSON.length == 0 ? 1 : Math.max.apply(Math,dbJSON.map(function(o){return o.id;})) + 1,
                     author : author,
                     title: title,
                     abstract: abstract,
@@ -114,6 +115,7 @@ const fs = require('fs')
 
                 //create the new data to store in the db.json
                 let data = {
+                    id:dbJSON.length == 0 ? 1 : Math.max.apply(Math,dbJSON.map(function(o){return o.id;})) + 1,
                     author : author,
                     title: title,
                     abstract: abstract,
