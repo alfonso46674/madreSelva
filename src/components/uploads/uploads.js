@@ -1,14 +1,23 @@
 import { React } from 'react'; //Use effect used on load
 import './uploads.scss';
-import { Container,Row,Col } from 'react-bootstrap';
+import { Container,Row,Col,Form } from 'react-bootstrap';
+import Button from '@material-ui/core/Button';
 
 const Uploads = () => {
+
+    // Passes the info from the form to the newData JSON
+    const myFunction = (e) => {
+      // const newData = { ...data }
+      // newData[e.target.id] = e.target.value
+      // setData(newData)
+    }
+
 
   return (
     <Container className='UploadsContainer'>
       <Row>
-        <Col className='titleCriteria'>
-        <h1>Criterios de publicación</h1>
+        <Col>
+        <h1  className='titles'>Criterios de publicación</h1>
         <ul>
           <li>
             <p>Al ser una plataforma especializada en contenidos de <b>arte y cultura</b> es necesario que los trabajos académicos que soliciten publicación tengan que ver con estos temas.</p>
@@ -69,7 +78,99 @@ const Uploads = () => {
         </ul>
         
         </Col>
-        <Col>Teest2</Col>
+        <Col>
+        <h1 className='titles'>Formularios de publicación</h1>
+
+        <h2>Publicar un documento PDF</h2>
+        <Form className='ClientForm'>
+          <Form.Group >
+            <Form.Label>Título</Form.Label>
+            <Form.Control required onChange={(e) => myFunction(e)} type="text" placeholder="Ingrese el título del documento" id='title' />
+          </Form.Group>
+          <Form.Group >
+            <Form.Label>Autor</Form.Label>
+            <Form.Control required onChange={(e) => myFunction(e)} type="text" placeholder="Ingrese el nombre completo del autor" id='author' />
+          </Form.Group>
+          <Form.Group >
+            <Form.Label>Categoría</Form.Label>
+            <Form.Control required onChange={(e) => myFunction(e)} as="select" defaultValue="Elegir..." id='category'>
+              <option>Crítica</option>
+              <option>Educación</option>
+              <option>Difusión</option>
+              <option>Investigación</option>
+              <option>Otros</option>
+            </Form.Control>
+          </Form.Group>
+          <Form.Group >
+            <Form.Label>Abstracto</Form.Label>
+            <Form.Control required onChange={(e) => myFunction(e)} as="textarea" placeholder="Ingrese un pequeño abstracto acerca del documento o video" id='abstract' />
+          </Form.Group>
+          
+          <Form.Group >
+            <Form.Label>Documento PDF</Form.Label>
+            <Form.File required onChange={(e) => myFunction(e)}  id='document' />
+          </Form.Group>
+          
+          <Form.Group >
+            <Form.Label>Carta de uso de contenidos</Form.Label>
+            <Form.File required onChange={(e) => myFunction(e)}  id='agreement' />
+          </Form.Group>
+          
+          <Button variant="contained" color="primary" type="submit" className='SubmitBtn' >
+            Submit
+        </Button>
+        </Form>
+                
+        <div>
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+        </div>
+
+        <h2>Publicar un video</h2>
+        <Form className='ClientForm'>
+          <Form.Group >
+            <Form.Label>Título</Form.Label>
+            <Form.Control required onChange={(e) => myFunction(e)} type="text" placeholder="Ingrese el título del documento" id='title' />
+          </Form.Group>
+          <Form.Group >
+            <Form.Label>Autor</Form.Label>
+            <Form.Control required onChange={(e) => myFunction(e)} type="text" placeholder="Ingrese el nombre completo del autor" id='author' />
+          </Form.Group>
+          <Form.Group >
+            <Form.Label>Categoría</Form.Label>
+            <Form.Control required onChange={(e) => myFunction(e)} as="select" defaultValue="Elegir..." id='category'>
+              <option>Crítica</option>
+              <option>Educación</option>
+              <option>Difusión</option>
+              <option>Investigación</option>
+              <option>Otros</option>
+            </Form.Control>
+          </Form.Group>
+          <Form.Group >
+            <Form.Label>Abstracto</Form.Label>
+            <Form.Control required onChange={(e) => myFunction(e)} as="textarea" placeholder="Ingrese un pequeño abstracto acerca del documento o video" id='abstract' />
+          </Form.Group>
+          
+          <Form.Group >
+            <Form.Label>Video link</Form.Label>
+            <Form.Control required onChange={(e) => myFunction(e)} type="text" placeholder="Ingrese el link al video" id='videoLink' />
+          </Form.Group>
+          
+          <Form.Group >
+            <Form.Label>Carta de uso de contenidos</Form.Label>
+            <Form.File required onChange={(e) => myFunction(e)}  id='agreement' />
+          </Form.Group>
+          
+          <Button variant="contained" color="primary" type="submit" className='SubmitBtn' >
+            Submit
+        </Button>
+        </Form>
+
+
+        </Col>
       </Row>
     </Container>
   )
