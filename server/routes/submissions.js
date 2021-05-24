@@ -81,11 +81,11 @@ router.get('/search',(req,res)=>{
         }
         //search only by author
         else if(author !== undefined && title === undefined && category === undefined){
-            searchResult = dbJSON.filter(submission => submission.author === author)
+            searchResult = dbJSON.filter(submission => submission.author.includes(author))
         }
         //search only by title
         else if(author === undefined && title !== undefined && category === undefined){
-            searchResult = dbJSON.filter(submission => submission.title === title)
+            searchResult = dbJSON.filter(submission => submission.title.includes(title))
         }
         //search only by category
         else if(author === undefined && title === undefined && category !== undefined){
@@ -93,19 +93,19 @@ router.get('/search',(req,res)=>{
         }
         //search by author and title
         else if(author !== undefined && title !== undefined && category === undefined){
-            searchResult = dbJSON.filter(submission => submission.author === author && submission.title === title)
+            searchResult = dbJSON.filter(submission => submission.author.includes(author) && submission.title.includes(title))
         }
         //search by title and category
         else if(author === undefined && title !== undefined && category !== undefined){
-            searchResult = dbJSON.filter(submission => submission.title === title && submission.category === category)
+            searchResult = dbJSON.filter(submission => submission.title.includes(title) && submission.category === category)
         }
         //search by author and category
         else if(author !== undefined && title === undefined && category !== undefined){
-            searchResult = dbJSON.filter(submission => submission.author === author && submission.category === category)
+            searchResult = dbJSON.filter(submission => submission.author.includes(author) && submission.category === category)
         }
         //search by author,title and category
         else if(author !== undefined && title !== undefined && category !== undefined){
-            searchResult = dbJSON.filter(submission => submission.author === author && submission.title === title && submission.category === category)
+            searchResult = dbJSON.filter(submission => submission.author.includes(author) && submission.title.includes(title) && submission.category === category)
         }
 
         res.status(200).send(searchResult)
