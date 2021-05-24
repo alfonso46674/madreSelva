@@ -3,6 +3,7 @@
 ## Example of a stored object in the DB
 
     {
+        "id":1,
         "author": "Alfonso",
         "title": "Practica3",
         "abstract": "This is a test description",
