@@ -59,8 +59,8 @@ const fs = require('fs')
             
             // console.log(req.file);
             //verify body contents
-            let {abstract,creatorName,Title,category} = req.body
-            if(abstract !== undefined && creatorName !== undefined && Title !== undefined && category !== undefined){
+            let {abstract,author,title,category} = req.body
+            if(abstract !== undefined && author !== undefined && title !== undefined && category !== undefined){
                 
                 //Save in the DB the parameters, along with the file path for future access
 
@@ -69,8 +69,8 @@ const fs = require('fs')
 
                 //create the new data to store in the db.json
                 let data = {
-                    creatorName : creatorName,
-                    Title: Title,
+                    author : author,
+                    title: title,
                     abstract: abstract,
                     category: category,
                     filePath: req.files.document[0].path,
@@ -91,7 +91,7 @@ const fs = require('fs')
                 //remove the files if there are missing parameters
                 fs.unlinkSync(req.files.document[0].path)
                 fs.unlinkSync(req.files.agreement[0].path)
-                res.status(400).send({'Error':'Missing parameters -abstract,creatorName,Title or category-'})
+                res.status(400).send({'Error':'Missing parameters -abstract,author,title or category-'})
             }
         }
     })
@@ -104,8 +104,8 @@ const fs = require('fs')
         else {
 
             //verify body contents
-            let {abstract,creatorName,Title,category,videoLink} = req.body
-            if(abstract !== undefined && creatorName !== undefined && Title !== undefined && category !== undefined && videoLink !== undefined){
+            let {abstract,author,title,category,videoLink} = req.body
+            if(abstract !== undefined && author !== undefined && title !== undefined && category !== undefined && videoLink !== undefined){
                 
                 //Save in the DB the parameters, along with the agreement file path for future access
 
@@ -114,8 +114,8 @@ const fs = require('fs')
 
                 //create the new data to store in the db.json
                 let data = {
-                    creatorName : creatorName,
-                    Title: Title,
+                    author : author,
+                    title: title,
                     abstract: abstract,
                     category: category,
                     filePath: null,
@@ -135,7 +135,7 @@ const fs = require('fs')
              else{
                 //remove the file if there are missing parameters
                 fs.unlinkSync(req.file.path)
-                res.status(400).send({'Error':'Missing parameters -abstract,creatorName,Title or category-'})
+                res.status(400).send({'Error':'Missing parameters -abstract,author,title or category-'})
             }
         }
     })

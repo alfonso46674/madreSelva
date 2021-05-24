@@ -3,8 +3,8 @@
 ## Example of a stored object in the DB
 
     {
-        "creatorName": "Alfonso",
-        "documentName": "Practica3",
+        "author": "Alfonso",
+        "title": "Practica3",
         "abstract": "This is a test description",
         "category": "educacion",
         "filePath": "C:\\Users\\Alponcho\\Documents\\Proyectos\\ArtWebPage\\madreSelva\\server\\files\\Practica3Clase.pdf",
@@ -23,9 +23,9 @@ Body to send:
 
     {
         document: -pdf file to upload-,
-        creatorName: -name of the author-,
+        author: -name of the author-,
         abstract: -small summary of the pdf-,
-        Title: -document title-,
+        title: -document title-,
         category: -category of the document-,
         agreement: -pdf agreement letter-
     }
@@ -40,9 +40,9 @@ Body to send:
 
     {
         videoLink: -youtube link to the video-,
-        creatorName: -name of the author-,
+        author: -name of the author-,
         abstract: -small summary of the pdf-,
-        Ttile: -video title-,
+        title: -video title-,
         category: -category of the document-
     }
 
@@ -68,7 +68,33 @@ Body to send:
 
 &nbsp;
 ### Download agreement letter
+GET Endpoint: **/files/agreement**
 
 Returns the agreement letter .docx  file
 
-GET Endpoint: **/files/agreement**
+
+&nbsp;
+## Obtaining submissions
+
+&nbsp;
+### Obtain all submissions
+GET Endpoint: **/submissions/all**
+
+&nbsp;
+### Obtain accepted submmissions
+GET Endpoint: **/submissions/accepted**
+
+&nbsp;
+### Obtain rejected submissions
+GET Endpoint: **/submissions/rejected**
+
+&nbsp;
+### Obtain pending submissions
+GET Endpoint: **/submissions/pending**
+
+&nbsp;
+### Search submissions by title/author/category
+GET Endpoint: **/submissions/search**
+
+Send search conditions as query params.
+i.e. http://localhost:8080/submissions/search?author=Alfonso&title=Practica3&category=educacion
