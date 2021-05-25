@@ -3,6 +3,8 @@ import { Container, Row, Col, Form } from 'react-bootstrap';
 import './videos.scss';
 import Button from '@material-ui/core/Button';
 import { DropdownButton, Dropdown } from 'react-bootstrap'
+import { Player, BigPlayButton } from 'video-react';
+
 const Videos = () => {
 
   return (
@@ -33,9 +35,24 @@ const Videos = () => {
           </Col>
         </Row>
         <Button variant="contained" color="primary" type="submit" className='SubmitBtn' >
-          Submit
+          Filtrar
         </Button>
       </Form>
+      <Row justify='center'>
+        <Col>
+          <Player
+            src='https://www.youtube.com/watch?v=8_tMRvpzDVc'
+            fluid={false}
+            muted={true}
+            width={850}
+            height={485}
+            startTime={14}
+            autoPlay={true}
+          >
+            <BigPlayButton position='center' />
+          </Player>
+        </Col>
+      </Row>
     </Container>
   )
 }

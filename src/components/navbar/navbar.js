@@ -7,7 +7,7 @@ const Navbar = ({ user, setUser }) => {
 
   return (
     <Row className='Navbar'>
-      <Col sm={8} className='Slogan'> Madre Selva</Col>
+      <Col sm={8} className='Slogan'>logo<img src='../../../logo.png'></img></Col>
       <Col sm={1} className='Client'>
         <Button><Link to='/'>Videos</Link></Button>
       </Col>
@@ -21,6 +21,7 @@ const Navbar = ({ user, setUser }) => {
         <Button ><Link to='/admin'>Admin</Link></Button>
       </Col>
     </Row>
+    
   )
 }
 export default Navbar;
