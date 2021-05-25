@@ -1,12 +1,12 @@
 import React from 'react';
 import './footer.scss';
-import {MDBCol,MDBContainer,MDBRow,MDBFooter} from 'mdbreact';
+import { MDBCol, MDBContainer, MDBRow, MDBFooter } from 'mdbreact';
 
 // https://mdbootstrap.com/docs/react/navigation/footer/
 
-const Footer = ()=>{
-    return (
-        <MDBFooter color="blue" className="font-small pt-4 mt-4">
+const Footer = () => {
+  return (
+    <MDBFooter  className="font-small pt-4 mt-4 footer-container" >
       <MDBContainer fluid className="text-center text-md-left">
         <MDBRow>
           <MDBCol md="6">
@@ -15,7 +15,7 @@ const Footer = ()=>{
               Para comentarios, quejas y sugerencias favor de mandar un mensaje al siguiente correo:
             </p>
             <p>
-                <b>madreselva.edu.art@gmail.com</b>
+              <b>madreselva.edu.art@gmail.com</b>
             </p>
           </MDBCol>
           <MDBCol md="6">
@@ -37,7 +37,7 @@ const Footer = ()=>{
         </MDBContainer>
       </div>
     </MDBFooter>
-    );
+  );
 }
 
 export default Footer

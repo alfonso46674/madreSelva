@@ -9,16 +9,16 @@ const Navbar = ({ user, setUser }) => {
     <Row className='Navbar'>
       <Col sm={8} className='Slogan'>logo<img src='../../../logo.png'></img></Col>
       <Col sm={1} className='Client'>
-        <Button><Link to='/'>Inicio</Link></Button>
+        <Button><Link to='/' className='navbar-text'>Inicio</Link></Button>
       </Col>
-      <Col sm={1} className='Developer2'>
-        <Button><Link to='/uploads'>Publicar</Link></Button>
-      </Col>
-      <Col sm={1} >
-        <Button ><Link to='/contact'>Conócenos</Link></Button>
+      <Col sm={1}>
+        <Button><Link to='/uploads' className='navbar-text'>Publicar</Link></Button>
       </Col>
       <Col sm={1} >
-        <Button ><Link to='/admin'>Admin</Link></Button>
+        <Button ><Link to='/contact' className='navbar-text' >Conócenos</Link></Button>
+      </Col>
+      <Col sm={1} >
+        <Button ><Link to='/admin'className='navbar-text'>Admin</Link></Button>
       </Col>
     </Row>
     

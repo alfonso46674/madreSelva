@@ -1,9 +1,17 @@
 // Navbar styles
+@import '../../constants.scss';
 
 .Navbar{
+  background-color: $green;
   padding: 1rem;
   border: 1px solid;
   .Client{
     text-align: right;
+  }
+  .navbar-text{
+    color: $yellow;
+  }
+  .navbar-text:hover{
+    color: rgb(64, 97, 206);
   }
 }

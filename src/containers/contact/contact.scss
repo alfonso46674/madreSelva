@@ -1,5 +1,8 @@
 // Home style
+@import '../../constants.scss';
+
 .Contact{
+  background-color: $grey;
   .Title{
     font-size: 80px;
     width: 100%;
