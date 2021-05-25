@@ -8,7 +8,7 @@ const VideosPage = () => {
   return (
     <div className='Videos'>
       <Navbar/>
-      <div className='Title'>MADRE SELVA</div>
+      <div className='Title'>MADRESELVA</div>
       <Videos/>
     </div>
   )

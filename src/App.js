@@ -3,6 +3,7 @@ import  Videos  from './containers/videos/videos';
 import Contact from './containers/contact/contact';
 import Admin from './containers/admin/admin';
 import Uploads from './containers/uploads/uploads';
+import Footer from './components/footer/footer';
 import './App.scss';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           </Switch>
         </div>
       </Router>
+      <Footer/>
     </div>
   );
 }

@@ -1,12 +1,15 @@
 const router = require('express').Router()
 
-const documentsRoute = require('./documents')
+const publishRoute = require('./publish')
+const filesRoute = require('./files')
+const submissionsRoute = require('./submissions')
 
-
-router.use('/documents',documentsRoute)
+router.use('/publish',publishRoute)
+router.use('/files',filesRoute)
+router.use('/submissions',submissionsRoute)
 
 //default get route
-router.get('/',(req,res)=>{
+router.get('/test',(req,res)=>{
     res.send({'test':'Hello World'})
 })
 

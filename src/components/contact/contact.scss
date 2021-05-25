@@ -1,19 +1,10 @@
 // Contacteloper2 style
-.UploadsContainer{
-  .DevForm{margin-top: 50px;
-    .SubmitBtn{
-      width: 100%;
-      margin-top: 2rem;
-      margin-bottom: 2rem;
-    }
-  }
-  .ticketTable{
-    width: 100%;
-    margin-bottom: 20px;
-    // border: 1px solid;
-    td {
-      width:10%;
-    }
+.ContactContainer{
+ 
+  // text-align: justify;
+  p {
+    text-align: justify;
+    text-justify: inter-word;
   }
 }
 

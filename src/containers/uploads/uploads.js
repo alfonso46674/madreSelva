@@ -7,7 +7,7 @@ const UploadsPage = () => {
   return(
     <div className='Uploads'>
       <Navbar/>
-      <div className='Title'>MADRE SELVA</div>
+      <div className='Title'>MADRESELVA</div>
       <Uploads/>
     </div>
   )
