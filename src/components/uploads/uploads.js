@@ -3,13 +3,31 @@ import './uploads.scss';
 import { Container,Row,Col,Form } from 'react-bootstrap';
 import Button from '@material-ui/core/Button';
 import axios from 'axios'
-
+import Modal from 'react-modal'
 
 const Uploads = () => {
     const urlPdf = 'http://localhost:8080/publish/pdf'
     const urlVideo = 'http://localhost:8080/publish/videoLink'
 
+    const customStyles = {
+      content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        width: '500px'
+      }
+    };
 
+    const [modalIsOpen, setIsOpen] = useState(false);
+    function openModal(){
+      setIsOpen(true);
+    }
+    function closeModal(){
+      setIsOpen(false)
+    }
     
     const [data, setData] = useState({
       author: '',
@@ -59,6 +77,8 @@ const Uploads = () => {
       }).then(res => {
         console.log('¡result!');
         console.log(res);
+        //open modal only if documents are uploaded correctly
+        if(res.status == 200) openModal()
       }).catch(err=>{
         return console.log(err);
       })
@@ -85,13 +105,26 @@ const Uploads = () => {
       }).then(res => {
         console.log('¡result!');
         console.log(res);
+        //open modal only if documents are uploaded correctly
+        if(res.status == 200) openModal()
       }).catch(err=>{
         return console.log(err);
       })
+      
     }
 
   return (
     <Container className='UploadsContainer'>
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          style={customStyles}
+          contentLabel="Example Modal"
+        >
+          <Container className='ClientContainer'>
+            <h1>Documentos subidos exitosamente </h1>
+          </Container>
+        </Modal>
       <Row>
         <Col>
         <h1  className='titles'>Criterios de publicación</h1>
