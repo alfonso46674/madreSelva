@@ -43,20 +43,20 @@ const Videos = () => {
           <Col sm={4} className=''>
             <Form.Group >
               <Form.Label>Filtrar por autor</Form.Label>
-              <Form.Control type="texxt" placeholder="Escriba el nombre del autor" id='date' />
+              <Form.Control type="text" placeholder="Escriba el nombre del autor" id='date' />
             </Form.Group>
           </Col>
           <Col sm={4} className=''>
-            <Form.Group >
-              <Form.Label>Filtrar por categorías</Form.Label>
-              <DropdownButton id="dropdown-basic-button" title="Seleccionar">
-                <Dropdown.Item >Crítica</Dropdown.Item>
-                <Dropdown.Item>Educación</Dropdown.Item>
-                <Dropdown.Item>Difusión</Dropdown.Item>
-                <Dropdown.Item>Investigación</Dropdown.Item>
-                <Dropdown.Item>Otros</Dropdown.Item>
-              </DropdownButton>
-            </Form.Group>
+          <Form.Group >
+            <Form.Label>Categoría</Form.Label>
+            <Form.Control as="select" defaultValue="Elegir..." id='category'>
+              <option>Crítica</option>
+              <option>Educación</option>
+              <option>Difusión</option>
+              <option>Investigación</option>
+              <option>Otros</option>
+            </Form.Control>
+          </Form.Group>
           </Col>
         </Row>
         <Button variant="contained" color="primary" type="submit" className='SubmitBtn' >

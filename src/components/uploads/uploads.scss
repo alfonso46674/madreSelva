@@ -1,14 +1,27 @@
-// Uploadseloper2 style
+@import '../../constants.scss';
+
 .UploadsContainer{
 
   .titles {
     text-align: center;
     text-justify: inter-word;
+    padding-bottom: 5%;
   }
 
   p {
     text-align: justify;
     text-justify: inter-word;
+  }
+
+  .PublishForm {
+    padding-bottom: 10%;
+
+  }
+  .SubmitBtn{
+    background-color: $purple;
+  }
+  .SubmitBtn:hover{
+    background-color: $purple;
   }
 }
 

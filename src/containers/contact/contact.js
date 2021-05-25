@@ -8,6 +8,7 @@ const ContactPage = () => {
     <div className='Contact'>
       <Navbar/>
       <div className='Title'>MADRESELVA</div>
+      <div className='Subtitle'>Ecosistema de educación artística</div>
       <Contact/>
     </div>
   )

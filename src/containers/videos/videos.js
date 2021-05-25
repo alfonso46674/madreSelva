@@ -9,6 +9,7 @@ const VideosPage = () => {
     <div className='Videos'>
       <Navbar/>
       <div className='Title'>MADRESELVA</div>
+      <div className='Subtitle'>Ecosistema de educación artística</div>
       <Videos/>
     </div>
   )

@@ -8,6 +8,7 @@ const AdminPage = () => {
     <div className='Admin'>
       <Navbar/>
       <div className='Title'>MADRESELVA</div>
+      <div className='Subtitle'>Ecosistema de educación artística</div>
       <Admin/>
     </div>
   )

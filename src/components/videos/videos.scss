@@ -1,10 +1,18 @@
+@import '../../constants.scss';
+
 // Videoss style
 .VideosContainer{
   .VideosForm{
-    .SubmitBtn{
+      .SubmitBtn{
+      background-color: $purple;
+      width: 100%;
+    }
+    .SubmitBtn:hover{
+      background-color: $purple;
       width: 100%;
     }
   }
 
+  
   padding-bottom: 50px;
 }

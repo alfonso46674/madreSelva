@@ -8,6 +8,7 @@ const UploadsPage = () => {
     <div className='Uploads'>
       <Navbar/>
       <div className='Title'>MADRESELVA</div>
+      <div className='Subtitle'>Ecosistema de educación artística</div>
       <Uploads/>
     </div>
   )

@@ -2,16 +2,16 @@
 @import '../../constants.scss';
 
 .Navbar{
-  background-color: $green;
+  background-color: rgb(123,21,37);
   padding: 1rem;
   border: 1px solid;
   .Client{
     text-align: right;
   }
   .navbar-text{
-    color: $yellow;
+    color: $white;
   }
   .navbar-text:hover{
-    color: rgb(64, 97, 206);
+    color: rgb(187, 50, 71);
   }
 }

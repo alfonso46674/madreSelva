@@ -82,7 +82,7 @@ const Uploads = () => {
         <h1 className='titles'>Formularios de publicación</h1>
 
         <h2>Publicar un documento PDF</h2>
-        <Form className='ClientForm'>
+        <Form className='PublishForm' id='pdfForm'>
           <Form.Group >
             <Form.Label>Título</Form.Label>
             <Form.Control required onChange={(e) => myFunction(e)} type="text" placeholder="Ingrese el título del documento" id='title' />
@@ -102,8 +102,8 @@ const Uploads = () => {
             </Form.Control>
           </Form.Group>
           <Form.Group >
-            <Form.Label>Abstracto</Form.Label>
-            <Form.Control required onChange={(e) => myFunction(e)} as="textarea" placeholder="Ingrese un pequeño abstracto acerca del documento o video" id='abstract' />
+            <Form.Label>Resumen</Form.Label>
+            <Form.Control required onChange={(e) => myFunction(e)} as="textarea" placeholder="Ingrese un pequeño resumen acerca del documento" id='abstract' />
           </Form.Group>
           
           <Form.Group >
@@ -121,16 +121,8 @@ const Uploads = () => {
         </Button>
         </Form>
                 
-        <div>
-          &nbsp;
-          &nbsp;
-          &nbsp;
-          &nbsp;
-          &nbsp;
-        </div>
-
-        <h2>Publicar un video</h2>
-        <Form className='ClientForm'>
+        <h2>Publicar un material audiovisual</h2>
+        <Form className='PublishForm'>
           <Form.Group >
             <Form.Label>Título</Form.Label>
             <Form.Control required onChange={(e) => myFunction(e)} type="text" placeholder="Ingrese el título del documento" id='title' />
@@ -150,13 +142,13 @@ const Uploads = () => {
             </Form.Control>
           </Form.Group>
           <Form.Group >
-            <Form.Label>Abstracto</Form.Label>
-            <Form.Control required onChange={(e) => myFunction(e)} as="textarea" placeholder="Ingrese un pequeño abstracto acerca del documento o video" id='abstract' />
+            <Form.Label>Resumen</Form.Label>
+            <Form.Control required onChange={(e) => myFunction(e)} as="textarea" placeholder="Ingrese un pequeño resumen acerca del material audiovisual" id='abstract' />
           </Form.Group>
           
           <Form.Group >
-            <Form.Label>Video link</Form.Label>
-            <Form.Control required onChange={(e) => myFunction(e)} type="text" placeholder="Ingrese el link al video" id='videoLink' />
+            <Form.Label>Link al material audiovisual</Form.Label>
+            <Form.Control required onChange={(e) => myFunction(e)} type="text" placeholder="Ingrese el link al material audiovisual" id='videoLink' />
           </Form.Group>
           
           <Form.Group >
