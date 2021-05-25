@@ -17,7 +17,7 @@ const {json, urlencoded} = express
 
 //basic parse configuration
 app.use(json());
-app.use(urlencoded({extended: false}));
+app.use(urlencoded({extended: true}));
 const corsOptions = {origin: '*',optionSuccessStatus:200}
 app.use(cors(corsOptions))
 

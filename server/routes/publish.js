@@ -85,7 +85,7 @@ const fs = require('fs')
                 //save the new version of the db by overwriting the old db.json
                 fs.writeFileSync('server/DB/db.json',JSON.stringify(dbJSON))
                 
-                res.status(200).send('Document uploaded')
+                res.status(200).send({'Success':'Document uploaded'})
             }
             //return error if one parameter is not provided
             else{
@@ -131,7 +131,7 @@ const fs = require('fs')
                 //save the new version of the db by overwriting the old db.json
                 fs.writeFileSync('server/DB/db.json',JSON.stringify(dbJSON))
                 
-                res.status(200).send('Document uploaded')
+                res.status(200).send({'Success':'Document uploaded'})
             }
              //return error if one parameter is not provided
              else{

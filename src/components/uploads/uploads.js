@@ -1,17 +1,94 @@
-import { React } from 'react'; //Use effect used on load
+import React,{useState}  from 'react'; //Use effect used on load
 import './uploads.scss';
 import { Container,Row,Col,Form } from 'react-bootstrap';
 import Button from '@material-ui/core/Button';
+import axios from 'axios'
+
 
 const Uploads = () => {
+    const urlPdf = 'http://localhost:8080/publish/pdf'
+    const urlVideo = 'http://localhost:8080/publish/videoLink'
 
+
+    
+    const [data, setData] = useState({
+      author: '',
+      title: '',
+      abstract: '',
+      category: '',
+      videoLink: null,
+      document: null,
+      agreement: null,
+    })
+    
     // Passes the info from the form to the newData JSON
     const myFunction = (e) => {
-      // const newData = { ...data }
-      // newData[e.target.id] = e.target.value
-      // setData(newData)
+      const newData = { ...data }
+      if(e.target.id == 'document'){
+        newData[e.target.id] = e.target.files[0]
+        setData(newData)
+      }
+      else if(e.target.id == 'agreement'){
+        newData[e.target.id] = e.target.files[0]
+        setData(newData)
+
+      }
+      else {
+        newData[e.target.id] = e.target.value
+        setData(newData)
+      }
     }
 
+    const submitPDF = (e)=>{
+      e.preventDefault()
+      let bodyFormData = new FormData()
+
+      bodyFormData.append('author',data.author)
+      bodyFormData.append('title',data.title)
+      bodyFormData.append('abstract',data.abstract)
+      bodyFormData.append('category',data.category)
+      bodyFormData.append('document',data.document)
+      bodyFormData.append('videoLink',data.videoLink)
+      bodyFormData.append('agreement',data.agreement)
+
+      axios({
+        method: "post",
+        url: urlPdf,
+        data: bodyFormData,
+        headers: {"Content-Type":"multipart/form-data"}
+      }).then(res => {
+        console.log('¡result!');
+        console.log(res);
+      }).catch(err=>{
+        return console.log(err);
+      })
+    }
+
+
+    const submitVideo = (e)=>{
+      e.preventDefault()
+      let bodyFormData = new FormData()
+
+      bodyFormData.append('author',data.author)
+      bodyFormData.append('title',data.title)
+      bodyFormData.append('abstract',data.abstract)
+      bodyFormData.append('category',data.category)
+      bodyFormData.append('document',data.document)
+      bodyFormData.append('videoLink',data.videoLink)
+      bodyFormData.append('agreement',data.agreement)
+
+      axios({
+        method: "post",
+        url: urlVideo,
+        data: bodyFormData,
+        headers: {"Content-Type":"multipart/form-data"}
+      }).then(res => {
+        console.log('¡result!');
+        console.log(res);
+      }).catch(err=>{
+        return console.log(err);
+      })
+    }
 
   return (
     <Container className='UploadsContainer'>
@@ -82,7 +159,7 @@ const Uploads = () => {
         <h1 className='titles'>Formularios de publicación</h1>
 
         <h2>Publicar un documento PDF</h2>
-        <Form className='PublishForm' id='pdfForm'>
+        <Form className='PublishForm' id='pdfForm' onSubmit={submitPDF}>
           <Form.Group >
             <Form.Label>Título</Form.Label>
             <Form.Control required onChange={(e) => myFunction(e)} type="text" placeholder="Ingrese el título del documento" id='title' />
@@ -122,7 +199,7 @@ const Uploads = () => {
         </Form>
                 
         <h2>Publicar un material audiovisual</h2>
-        <Form className='PublishForm'>
+        <Form className='PublishForm' id='videoForm'onSubmit={submitVideo}>
           <Form.Group >
             <Form.Label>Título</Form.Label>
             <Form.Control required onChange={(e) => myFunction(e)} type="text" placeholder="Ingrese el título del documento" id='title' />

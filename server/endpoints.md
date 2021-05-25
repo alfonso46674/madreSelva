@@ -44,7 +44,8 @@ Body to send:
         author: -name of the author-,
         abstract: -small summary of the pdf-,
         title: -video title-,
-        category: -category of the document-
+        category: -category of the document-,
+        agreement: -pdf agreement letter-
     }
 
 &nbsp;
