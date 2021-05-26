@@ -204,6 +204,7 @@ const Uploads = () => {
           <Form.Group >
             <Form.Label>Categoría</Form.Label>
             <Form.Control required onChange={(e) => myFunction(e)} as="select" defaultValue="Elegir..." id='category'>
+              <option>Elegir...</option>
               <option>Crítica</option>
               <option>Educación</option>
               <option>Difusión</option>
@@ -244,6 +245,7 @@ const Uploads = () => {
           <Form.Group >
             <Form.Label>Categoría</Form.Label>
             <Form.Control required onChange={(e) => myFunction(e)} as="select" defaultValue="Elegir..." id='category'>
+              <option>Elegir...</option>
               <option>Crítica</option>
               <option>Educación</option>
               <option>Difusión</option>
