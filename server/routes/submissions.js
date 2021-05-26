@@ -117,25 +117,29 @@ router.get('/search',(req,res)=>{
 
 //Edit submission status
 router.put('/status',(req,res)=>{
-    //read db.json
-    let dbJSON = JSON.parse(fs.readFileSync('server/DB/db.json'))
+    try {
+        //read db.json
+        let dbJSON = JSON.parse(fs.readFileSync('server/DB/db.json'))
+        console.log(req.body);
+        let {id,status} = req.body
+        id = parseInt(id)
+        //filter submissions and obtain a submission with the passed id
+        let submissionIndex = dbJSON.findIndex(submission => submission.id === id)
+        // console.log(submissionIndex);
+        if(submissionIndex !== -1){
+            //update status of obtained submission
+            dbJSON[submissionIndex].status = status
 
-    let {id,status} = req.body
+            //save the new version of the db by overwriting the old db.json
+            fs.writeFileSync('server/DB/db.json',JSON.stringify(dbJSON))
 
-    //filter submissions and obtain a submission with the passed id
-    let submissionIndex = dbJSON.findIndex(submission => submission.id === id)
-
-    if(submissionIndex !== 1){
-        //update status of obtained submission
-        dbJSON[submissionIndex].status = status
-
-        //save the new version of the db by overwriting the old db.json
-        fs.writeFileSync('server/DB/db.json',JSON.stringify(dbJSON))
-
-        res.status(200).send({'Success':`Changed submission #${id} status to ${status}`})
-        
-    } else {
-        res.status(400).send({'Error':`Error at finding submission with id ${id}`})
+            res.status(200).send({'Success':`Changed submission #${id} status to ${status}`})
+            
+        } else {
+            res.status(400).send({'Error':`Error at finding submission with id ${id}`})
+        }
+    } catch (error) {
+        res.status(501).send({'Internal Error':error})
     }
 
 })
