@@ -4,18 +4,21 @@ import { Container, Row, Col, Form } from 'react-bootstrap';
 import Button from '@material-ui/core/Button';
 import axios from 'axios'
 import Modal from 'react-modal';
+import FileDownload from 'js-file-download'
 
 const Admin = () => {
 
   const urlSubmissions = 'http://localhost:8080/api/submissions/all'
   const urlChangeStatus = 'http://localhost:8080/api/submissions/status'
+  const urlDownloadFile = 'http://localhost:8080/api/files/download?id='
   
   const [logged, setLogged] = useState(0)
   const [tryEmail, setTryEmail] = useState('')
   const [tryPass, setTryPass] = useState('')
 
   const email = 'madreselva.edu.art@gmail.com'
-  const password = 'madreselva_password'
+  const password = '1'
+  // const password = 'madreselva_password'
 
   const [submissions,setSubmissions] = useState([])
 
@@ -31,6 +34,18 @@ const Admin = () => {
       console.log(err);
     })
   }, [])
+
+  //refrescar submissions
+  const refreshSubmissions = () => {
+    axios.get(urlSubmissions)
+    .then(res => {
+      // console.log(res);
+      setSubmissions(res.data)
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
 
   //manejo del modal que se mostrara para cambiar status
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -66,18 +81,68 @@ const Admin = () => {
     else setLogged(2)
   }
 
-  //render table information
-  const renderTableHeader = ()=>{
-    return <tr>
-        <th>ID</th>
-        <th>Titulo</th>
-        <th>Autor</th>
-        <th>Status</th>
-        <th>Categoría</th>
-        <th>Resumen</th>
-    </tr>
-  }
+    //render table information
+    const renderTableHeader = ()=>{
+      return <tr>
+          <th>ID</th>
+          <th>Tipo</th>
+          <th>Titulo</th>
+          <th>Autor</th>
+          <th>Status</th>
+          <th>Categoría</th>
+          <th>Resumen</th>
+      </tr>
+    }
 
+  const renderTableData = ()=>{
+    return submissions.map((submission,index)=>{
+      const {id,type,title,author,status,category,abstract} = submission
+      return (
+        <tr key={id}>
+          <td id='id'>{id}</td>
+          <td><Button onClick={returnSubmissionInformation}>{type}</Button></td>
+          <td>{title}</td>
+          <td>{author}</td>
+          <td><Button onClick={obtainIdAndOpenModal}>{status}</Button></td>
+          <td>{category}</td>
+          <td >{abstract}</td>
+          </tr>
+      )
+    })
+  }
+  
+  //abre una ventana del navegador con el video, o descarga el archivo pdf
+  const returnSubmissionInformation = (e)=>{
+     //row where the event was created
+     let trEvent = e.target.parentElement.parentElement.parentElement;
+     //obtain the id related to the event row
+     let idEvent = trEvent.firstChild.innerHTML
+    //  console.log(idEvent);
+    //title of the submission
+    let titleEvent = trEvent.children[2].innerHTML
+    // console.log(titleEvent);    
+    if(e.target.innerHTML === 'Archivo'){
+      let urlDownloadFileById = urlDownloadFile + idEvent
+      axios({
+        url:urlDownloadFileById,
+        method: 'GET',
+        responseType: 'blob' // important for fileDownloader
+      })
+      .then(res => {
+        console.log(res);
+        //download file to browser
+        FileDownload(res.data,`${titleEvent}.pdf`)
+        //https://stackoverflow.com/questions/41938718/how-to-download-files-using-axios
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }
+    else if(e.target.innerHTML === 'Video'){
+      console.log('video')
+    }
+  }
+  
   //data to send to update status submission
   const [data,setData] = useState({
     id:'',
@@ -98,23 +163,6 @@ const Admin = () => {
     setData(newData)
     // console.log(newData);
   }
-
-  const renderTableData = ()=>{
-    return submissions.map((submission,index)=>{
-      const {id,title,author,status,category,abstract} = submission
-      return (
-        <tr key={id}>
-          <td id='id'>{id}</td>
-          <td>{title}</td>
-          <td>{author}</td>
-          <td><Button onClick={obtainIdAndOpenModal}>{status}</Button></td>
-          <td>{category}</td>
-          <td >{abstract}</td>
-          </tr>
-      )
-    })
-  }
-
 
   //modal handling
   const renderStatusModal = () => {
@@ -201,7 +249,11 @@ const Admin = () => {
       </Form>
       {
         logged === 1 ?
-          <div>           
+          <div>
+            <div>
+            <Button className='SubmitBtn' color='primary' variant='contained' onClick={refreshSubmissions}>Refrescar elementos</Button>
+            <span></span>
+            </div>           
           <table className='submissionTable'>
             <tbody>
               {renderTableHeader()}
