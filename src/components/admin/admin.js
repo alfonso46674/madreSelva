@@ -11,6 +11,7 @@ const Admin = () => {
   const urlSubmissions = 'http://localhost:8080/api/submissions/all'
   const urlChangeStatus = 'http://localhost:8080/api/submissions/status'
   const urlDownloadFile = 'http://localhost:8080/api/files/download?id='
+  const urlDownloadAgreement = 'http://localhost:8080/api/files/agreement?id='
   
   const [logged, setLogged] = useState(0)
   const [tryEmail, setTryEmail] = useState('')
@@ -86,6 +87,7 @@ const Admin = () => {
       return <tr>
           <th>ID</th>
           <th>Tipo</th>
+          <th>Carta</th>
           <th>Titulo</th>
           <th>Autor</th>
           <th>Status</th>
@@ -100,7 +102,8 @@ const Admin = () => {
       return (
         <tr key={id}>
           <td id='id'>{id}</td>
-          <td><Button onClick={returnSubmissionInformation}>{type}</Button></td>
+          <td><Button onClick={DownloadDocuments}>{type}</Button></td>
+          <td><Button onClick={DownloadAgreement}>Descargar</Button></td>
           <td>{title}</td>
           <td>{author}</td>
           <td><Button onClick={obtainIdAndOpenModal}>{status}</Button></td>
@@ -112,14 +115,14 @@ const Admin = () => {
   }
   
   //abre una ventana del navegador con el video, o descarga el archivo pdf
-  const returnSubmissionInformation = (e)=>{
+  const DownloadDocuments = (e)=>{
      //row where the event was created
      let trEvent = e.target.parentElement.parentElement.parentElement;
      //obtain the id related to the event row
      let idEvent = trEvent.firstChild.innerHTML
     //  console.log(idEvent);
     //title of the submission
-    let titleEvent = trEvent.children[2].innerHTML
+    let titleEvent = trEvent.children[3].innerHTML
     // console.log(titleEvent);    
     if(e.target.innerHTML === 'Archivo'){
       let urlDownloadFileById = urlDownloadFile + idEvent
@@ -141,6 +144,31 @@ const Admin = () => {
     else if(e.target.innerHTML === 'Video'){
       console.log('video')
     }
+  }
+
+  const DownloadAgreement = (e) => {
+    //row where the event was created
+    let trEvent = e.target.parentElement.parentElement.parentElement;
+    //obtain the id related to the event row
+    let idEvent = trEvent.firstChild.innerHTML
+
+    let titleEvent = trEvent.children[3].innerHTML
+
+    let urlDownloadAgreementById = urlDownloadAgreement + idEvent
+    axios({
+      url:urlDownloadAgreementById,
+      method: 'GET',
+      responseType: 'blob' // important for fileDownloader
+    })
+    .then(res => {
+      console.log(res);
+      //download file to browser
+      FileDownload(res.data,`${titleEvent}_cartaUso.pdf`)
+      //https://stackoverflow.com/questions/41938718/how-to-download-files-using-axios
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
   
   //data to send to update status submission
