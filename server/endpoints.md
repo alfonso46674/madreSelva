@@ -57,7 +57,7 @@ Body to send:
 GET Endpoint: **/files/show**
 
 &nbsp;
-### Download a specific file by id
+### Download a specific file by submission id
 
 GET Endpoint: **/files/download**
 
@@ -66,10 +66,20 @@ Returns a pdf file given its submission id
 Send id as query params.
 i.e. http://localhost:8080/files/download?id=1
 
+&nbsp;
+### Download a specific agreement by submission id
+
+GET Endpoint: **/files/agreement**
+
+Returns an agreement file given its submission id
+
+Send id as query params.
+i.e. http://localhost:8080/files/agreement?id=1
+
 
 &nbsp;
 ### Download agreement letter
-GET Endpoint: **/files/agreement**
+GET Endpoint: **/files/agreementTemplate**
 
 Returns the agreement letter .docx  file
 

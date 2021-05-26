@@ -15,7 +15,7 @@ router.get('/show', async (req,res)=>{
     res.send(filesRenamed)
 })
 
-//downloads a file given the input req.body.filename
+//downloads a file given a submission id
 router.get('/download', (req,res)=>{
 
     let {id} = req.query
@@ -33,7 +33,6 @@ router.get('/download', (req,res)=>{
 
          let relativeFilePath = path.join(__dirname, `../files/${fileName}`)
          if(fs.statSync(relativeFilePath).isFile()){
-            //  res.status(200).download(relativeFilePath)
              res.status(200).download(relativeFilePath)
             }
             else res.status.send({'Error':`No file with name: ${fileName} in DB`})
@@ -45,8 +44,38 @@ router.get('/download', (req,res)=>{
     }
 })
 
+//downloads a file given a submission id
+router.get('/agreement', (req,res)=>{
+
+    let {id} = req.query
+    id = parseInt(id)
+
+    try {
+         //read db.json
+         let dbJSON = JSON.parse(fs.readFileSync('server/DB/db.json'))
+
+         //filter db by submission id and check that its a file
+         let submissionToFind = dbJSON.filter(submission => submission.id === id)
+        
+         //the last segment of the submission filePath will always be the file name
+         let fileName = path.basename(path.normalize(submissionToFind[0].agreementPath))
+
+         let relativeFilePath = path.join(__dirname, `../files/${fileName}`)
+         if(fs.statSync(relativeFilePath).isFile()){
+             res.status(200).download(relativeFilePath)
+            }
+            else res.status.send({'Error':`No file with name: ${fileName} in DB`})
+
+
+        
+    } catch (error) {
+        res.status(501).send({'Internal Error':error})
+    }
+})
+
+
 //downloads the agreement letter
-router.get('/agreement',(req,res)=>{
+router.get('/agreementTemplate',(req,res)=>{
     let filePath = path.join(__dirname,'../staticFiles/CartaUsoDeContenidos.docx')
 
     if(fs.statSync(filePath).isFile()){
