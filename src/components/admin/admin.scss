@@ -11,5 +11,13 @@
       background-color: $purple;
     }
  }
+ .submissionTable{
+    width: 100%;
+    margin-bottom: 20px;
+    // border: 1px solid;
+    td {
+      width:10%;
+    }
+ }
 }
 
