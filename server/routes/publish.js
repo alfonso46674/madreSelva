@@ -77,7 +77,8 @@ const fs = require('fs')
                     filePath: req.files.document[0].path,
                     agreementPath: req.files.agreement[0].path,
                     status: 'pending',
-                    videoLink: null
+                    videoLink: null,
+                    type:"Archivo"
                 }
 
                 //append the data to the db.json
@@ -123,7 +124,8 @@ const fs = require('fs')
                     filePath: null,
                     agreementPath: req.file.path,
                     status: 'pending',
-                    videoLink: videoLink
+                    videoLink: videoLink,
+                    type:'Video'
                 }
 
                 //append the data to the db.json

@@ -16,12 +16,32 @@ router.get('/show', async (req,res)=>{
 })
 
 //downloads a file given the input req.body.filename
-router.post('/download', (req,res)=>{
-    //obtain the path of the filename
-    let filePath = path.join(__dirname,`../files/${req.body.filename}`)
-    //if the provided filename exists in /files
-    if(fs.statSync(filePath).isFile()){
-        res.download(filePath)
+router.get('/download', (req,res)=>{
+
+    let {id} = req.query
+    id = parseInt(id)
+
+    try {
+         //read db.json
+         let dbJSON = JSON.parse(fs.readFileSync('server/DB/db.json'))
+
+         //filter db by submission id and check that its a file
+         let submissionToFind = dbJSON.filter(submission => submission.id === id && submission.type === 'Archivo')
+        
+         //the last segment of the submission filePath will always be the file name
+         let fileName = path.basename(path.normalize(submissionToFind[0].filePath))
+
+         let relativeFilePath = path.join(__dirname, `../files/${fileName}`)
+         if(fs.statSync(relativeFilePath).isFile()){
+            //  res.status(200).download(relativeFilePath)
+             res.status(200).download(relativeFilePath)
+            }
+            else res.status.send({'Error':`No file with name: ${fileName} in DB`})
+
+
+        
+    } catch (error) {
+        res.status(501).send({'Internal Error':error})
     }
 })
 

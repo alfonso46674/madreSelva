@@ -11,7 +11,8 @@
         "filePath": "C:\\Users\\Alponcho\\Documents\\Proyectos\\ArtWebPage\\madreSelva\\server\\files\\Practica3Clase.pdf",
         "agreementPath": "C:\\Users\\Alponcho\\Documents\\Proyectos\\ArtWebPage\\madreSelva\\server\\files\agreement.pdf",
         "status": "pending",
-        "videoLink": null        
+        "videoLink": null,
+        "type":"file"        
     }
 
 
@@ -56,17 +57,15 @@ Body to send:
 GET Endpoint: **/files/show**
 
 &nbsp;
-### Download a specific file by name
+### Download a specific file by id
 
-POST Endpoint: **/files/download**
+GET Endpoint: **/files/download**
 
-Returns a pdf file given its filename
+Returns a pdf file given its submission id
 
-Body to send:
+Send id as query params.
+i.e. http://localhost:8080/files/download?id=1
 
-    {
-        filename: -file name-
-    }
 
 &nbsp;
 ### Download agreement letter
