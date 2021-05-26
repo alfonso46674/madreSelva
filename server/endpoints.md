@@ -49,7 +49,7 @@ Body to send:
     }
 
 &nbsp;
-## Obtaining files
+## Obtain files
 
 ### Show all stored files
 
@@ -76,7 +76,7 @@ Returns the agreement letter .docx  file
 
 
 &nbsp;
-## Obtaining submissions
+## Obtain submissions
 
 &nbsp;
 ### Obtain all submissions
@@ -100,3 +100,20 @@ GET Endpoint: **/submissions/search**
 
 Send search conditions as query params.
 i.e. http://localhost:8080/submissions/search?author=Alfonso&title=Practica3&category=educacion
+
+&nbsp;
+
+## Modify submissions
+&nbsp;
+### Modify submission status
+
+PUT Endpoint: **/submissions/status**
+
+Modify submission status to one of the following states: rejected, pending or accepted. 
+
+Body to send:
+
+    {
+        id: -id of the submission to edit-,
+        status: -new submission status-        
+    }
