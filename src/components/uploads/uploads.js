@@ -6,8 +6,8 @@ import axios from 'axios'
 import Modal from 'react-modal'
 
 const Uploads = () => {
-    const urlPdf = 'http://localhost:8080/publish/pdf'
-    const urlVideo = 'http://localhost:8080/publish/videoLink'
+    const urlPdf = 'http://localhost:8080/api/publish/pdf'
+    const urlVideo = 'http://localhost:8080/api/publish/videoLink'
 
     const customStyles = {
       content: {

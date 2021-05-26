@@ -4,12 +4,12 @@ const publishRoute = require('./publish')
 const filesRoute = require('./files')
 const submissionsRoute = require('./submissions')
 
-router.use('/publish',publishRoute)
-router.use('/files',filesRoute)
-router.use('/submissions',submissionsRoute)
+router.use('/api/publish',publishRoute)
+router.use('/api/files',filesRoute)
+router.use('/api/submissions',submissionsRoute)
 
 //default get route
-router.get('/test',(req,res)=>{
+router.get('/api/test',(req,res)=>{
     res.send({'test':'Hello World'})
 })
 

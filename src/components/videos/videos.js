@@ -7,7 +7,7 @@ import { Player, BigPlayButton } from 'video-react';
 import axios from 'axios'
 
 const Videos = () => {
-  const url = 'http://localhost:8080/test'
+  const url = 'http://localhost:8080/api/test'
   const submit = (e)=>{
     axios.get(url)
     .then(res=>{
