@@ -29,3 +29,10 @@
 .SubmitBtn:hover{
   background-color: $purple;
 }
+
+#abstract{
+  width:150px;
+  text-align:justify;
+  text-justify: inter-word;
+  padding:5px;
+}
