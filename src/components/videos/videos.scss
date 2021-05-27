@@ -13,6 +13,16 @@
     }
   }
 
-  
+  .SubmitBtn{
+    background-color: $purple;
+  }
+  .SubmitBtn:hover{
+    background-color: $purple;
+  }
   padding-bottom: 50px;
+}
+
+.card{
+  margin-bottom: 2%;
+  margin-top: 2%;
 }

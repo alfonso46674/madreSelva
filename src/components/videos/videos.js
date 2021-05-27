@@ -1,13 +1,15 @@
-import {React,useEffect} from 'react';
-import { Container, Row, Col, Form } from 'react-bootstrap';
+import {React,useEffect,useState} from 'react';
+import { Container, Row, Col, Form,Card } from 'react-bootstrap';
 import './videos.scss';
 import Button from '@material-ui/core/Button';
 import { DropdownButton, Dropdown } from 'react-bootstrap'
-import { Player, BigPlayButton } from 'video-react';
+import ReactPlayer from 'react-player';
 import axios from 'axios'
 
 const Videos = () => {
   const url = 'http://localhost:8080/api/test'
+  const urlAcceptedSubmissions = 'http://localhost:8080/api/submissions/accepted'
+
   const submit = (e)=>{
     axios.get(url)
     .then(res=>{
@@ -19,17 +21,93 @@ const Videos = () => {
 
   }
 
+  //obtener accepted submissions al cargar la pagina
+  const [submissions,setSubmissions] = useState([])
+
+
   useEffect(()=>{
-    axios.get(url)
+    axios.get(urlAcceptedSubmissions)
     .then(res=>{
       console.log(res.data);
+      setSubmissions(res.data)
     })
     .catch(err=>{
       console.log(err);
     })
   },[])
 
+  
+  //refrescar submissions
+  const refreshSubmissions = () => {
+    axios.get(urlAcceptedSubmissions)
+    .then(res => {
+      // console.log(res);
+      setSubmissions(res.data)
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
 
+  const renderCardData = () => {
+    return submissions.map((submission,index)=>{
+      const {id,type,title,author,category,abstract,videoLink} = submission
+      if(type === 'Archivo'){
+        return(
+          <Card >
+          <Card.Header as='h5'>{title}</Card.Header>
+          <Card.Body>
+            <Card.Title>{author}</Card.Title>
+            <Card.Text>
+              {abstract}
+            </Card.Text>
+            <Button variant="contained" color="primary" className='SubmitBtn'>Descargar PDF</Button>
+          </Card.Body>
+          <Card.Footer className="text-muted">{category}</Card.Footer>
+        </Card>
+        )
+      }
+      else if(type === 'Video'){
+        return (
+          <Card>
+          <Card.Header as='h5'>{title}</Card.Header>
+          <Card.Body>
+            <Card.Title>{author}</Card.Title>
+            <Card.Text>
+              {abstract}
+            </Card.Text>
+            <ReactPlayer url={videoLink}></ReactPlayer>
+          </Card.Body>
+          <Card.Footer className="text-muted">{category}</Card.Footer>
+        </Card>
+        )
+      }
+    })
+  }
+  // const renderTableData = () => {
+  //   return submissions.map((submission,index)=>{
+  //     const {id,type,title,author,category,abstract,videoLink} = submission
+  //     if(type === 'Archivo'){
+  //       return(
+  //         <div>
+  //           <tr>
+  //           <td>{title}</td>
+  //           <td>Descargar</td>
+  //         </tr>
+  //         <tr>
+  //           <td>{author}</td>
+  //           <td>{abstract}</td>
+  //         </tr>
+  //         </div>
+  //       )
+  //     }
+  //     else if(type === 'Video'){
+  //       return (
+  //         <ReactPlayer url='https://www.youtube.com/watch?v=aSDAefhnTXQ'></ReactPlayer>
+  //       )
+  //     }
+  //   })
+  // }
   return (
     <Container className='VideosContainer'>
       <Form className='VideosForm'>
@@ -65,17 +143,12 @@ const Videos = () => {
       </Form>
       <Row justify='center'>
         <Col>
-          <Player
-            src='https://www.youtube.com/watch?v=8_tMRvpzDVc'
-            fluid={false}
-            muted={true}
-            width={850}
-            height={485}
-            startTime={14}
-            autoPlay={true}
-          >
-            <BigPlayButton position='center' />
-          </Player>
+         {/* <table>
+           <tbody>
+            {renderTableData()}
+           </tbody>
+         </table> */}
+         {renderCardData()}
         </Col>
       </Row>
     </Container>

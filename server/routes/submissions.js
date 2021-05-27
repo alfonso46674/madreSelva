@@ -143,7 +143,7 @@ router.put('/status',(req,res)=>{
             // }
 
             //update status of obtained submission
-            submission.status = status
+            submission.status = status.toLowerCase()
 
             //save the new version of the db by overwriting the old db.json
             fs.writeFileSync('server/DB/db.json',JSON.stringify(dbJSON))
