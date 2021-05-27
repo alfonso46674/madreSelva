@@ -78,6 +78,17 @@ i.e. http://localhost:8080/files/agreement?id=1
 
 
 &nbsp;
+### Download a specific videoLink by submission id
+
+GET Endpoint: **/files/video**
+
+Returns an video link given its submission id
+
+Send id as query params.
+i.e. http://localhost:8080/files/video?id=1
+
+
+&nbsp;
 ### Download agreement letter
 GET Endpoint: **/files/agreementTemplate**
 

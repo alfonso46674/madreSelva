@@ -73,6 +73,29 @@ router.get('/agreement', (req,res)=>{
     }
 })
 
+//return a video link given a submission id
+router.get('/video', (req,res)=>{
+
+    let {id} = req.query
+    id = parseInt(id)
+    try {
+         //read db.json
+         let dbJSON = JSON.parse(fs.readFileSync('server/DB/db.json'))
+
+         //filter db by submission id and check that its a file
+         let submissionToFind = dbJSON.filter(submission => submission.id === id && submission.type === 'Video')
+
+         if(submissionToFind.videoLink !== null){
+             res.status(200).send({'videoLink':submissionToFind[0].videoLink})
+            }
+        else res.status.send({'Error':`No videoLink for submission ${id}`})
+
+
+        
+    } catch (error) {
+        res.status(501).send({'Internal Error':error})
+    }
+})
 
 //downloads the agreement letter
 router.get('/agreementTemplate',(req,res)=>{
