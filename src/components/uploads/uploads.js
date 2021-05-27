@@ -4,10 +4,12 @@ import { Container,Row,Col,Form } from 'react-bootstrap';
 import Button from '@material-ui/core/Button';
 import axios from 'axios'
 import Modal from 'react-modal'
+import FileDownload from 'js-file-download'
 
 const Uploads = () => {
     const urlPdf = 'http://localhost:8080/api/publish/pdf'
     const urlVideo = 'http://localhost:8080/api/publish/videoLink'
+    const urlAgreementTemplate = 'http://localhost:8080/api/files/agreementTemplate'
 
     const customStyles = {
       content: {
@@ -113,6 +115,21 @@ const Uploads = () => {
       
     }
 
+    const downloadAgreementTemplate = (e) => {
+      axios({
+        url: urlAgreementTemplate,
+        method:"GET",
+        responseType: 'blob' // important for FileDownload
+      })
+      .then(res => {
+        console.log(res);
+        FileDownload(res.data, 'CartaUsoDeContenidos.docx')
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }
+
   return (
     <Container className='UploadsContainer'>
         <Modal
@@ -175,7 +192,7 @@ const Uploads = () => {
           </li>
 
           <li>
-            <p>Además del trabajo académico, se requerirán los siguientes elementos en la solicitud: Breve abstract del trabajo, nombre completo del autor, título del trabajo, última fecha de edición de éste y la carta de uso de contenidos.</p>
+            <p>Además del trabajo académico, se requerirán los siguientes elementos en la solicitud: Breve resumen del trabajo, nombre completo del autor, título del trabajo, y la carta de uso de contenidos.</p>
           </li>
 
           <li>
@@ -184,8 +201,10 @@ const Uploads = () => {
 
           <li>
             <p>Antes de proceder te pedimos que descargues la carta de uso de contenidos que estará disponible aquí debajo, para que la adjuntes en formato PDF en la solicitud de publicación con los datos requeridos en ella (es esencial que tenga firma y nombre).</p>
+            <Button onClick={downloadAgreementTemplate} variant="contained" color="primary" className='SubmitBtn'>Carta de uso</Button>
           </li>
         </ul>
+        
         
         </Col>
         <Col>
@@ -228,7 +247,7 @@ const Uploads = () => {
           </Form.Group>
           
           <Button variant="contained" color="primary" type="submit" className='SubmitBtn' >
-            Submit
+            Enviar
         </Button>
         </Form>
                 
@@ -269,7 +288,7 @@ const Uploads = () => {
           </Form.Group>
           
           <Button variant="contained" color="primary" type="submit" className='SubmitBtn' >
-            Submit
+            Enviar
         </Button>
         </Form>
 
