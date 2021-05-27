@@ -109,7 +109,7 @@ const Admin = () => {
           <td>{author}</td>
           <td><Button onClick={obtainIdAndOpenModal}>{status}</Button></td>
           <td>{category}</td>
-          <td id='abstract'>{abstract}</td>
+          <td id='abstractTd'>{abstract}</td>
           </tr>
       )
     })
