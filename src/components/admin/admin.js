@@ -8,11 +8,11 @@ import FileDownload from 'js-file-download'
 
 const Admin = () => {
 
-  const urlSubmissions = 'http://localhost:8080/api/submissions/all'
-  const urlChangeStatus = 'http://localhost:8080/api/submissions/status'
-  const urlDownloadFile = 'http://localhost:8080/api/files/download?id='
-  const urlDownloadAgreement = 'http://localhost:8080/api/files/agreement?id='
-  const urlVideoLink = 'http://localhost:8080/api/files/video?id='
+  const urlSubmissions = 'https://madreselva.ddns.net/api/submissions/all'
+  const urlChangeStatus = 'https://madreselva.ddns.net/api/submissions/status'
+  const urlDownloadFile = 'https://madreselva.ddns.net/api/files/download?id='
+  const urlDownloadAgreement = 'https://madreselva.ddns.net/api/files/agreement?id='
+  const urlVideoLink = 'https://madreselva.ddns.net/api/files/video?id='
   
   const [logged, setLogged] = useState(0)
   const [tryEmail, setTryEmail] = useState('')

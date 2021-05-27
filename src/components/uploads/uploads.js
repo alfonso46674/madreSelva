@@ -7,9 +7,9 @@ import Modal from 'react-modal'
 import FileDownload from 'js-file-download'
 
 const Uploads = () => {
-    const urlPdf = 'http://localhost:8080/api/publish/pdf'
-    const urlVideo = 'http://localhost:8080/api/publish/videoLink'
-    const urlAgreementTemplate = 'http://localhost:8080/api/files/agreementTemplate'
+    const urlPdf = 'https://madreselva.ddns.net/api/publish/pdf'
+    const urlVideo = 'https://madreselva.ddns.net/api/publish/videoLink'
+    const urlAgreementTemplate = 'https://madreselva.ddns.net/api/files/agreementTemplate'
 
     const customStyles = {
       content: {

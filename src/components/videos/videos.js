@@ -7,9 +7,9 @@ import ReactPlayer from 'react-player';
 import axios from 'axios'
 
 const Videos = () => {
-  const urlAcceptedSubmissions = 'http://localhost:8080/api/submissions/accepted'
-  const urlSearchAcceptedSubmissions = 'http://localhost:8080/api/submissions/search'
-  const urlDownloadFile = 'http://localhost:8080/api/files/download?id='
+  const urlAcceptedSubmissions = 'https://madreselva.ddns.net/api/submissions/accepted'
+  const urlSearchAcceptedSubmissions = 'https://madreselva.ddns.net/api/submissions/search'
+  const urlDownloadFile = 'https://madreselva.ddns.net/api/files/download?id='
  
 
   //obtener accepted submissions al cargar la pagina
