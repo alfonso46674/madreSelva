@@ -7,20 +7,10 @@ import ReactPlayer from 'react-player';
 import axios from 'axios'
 
 const Videos = () => {
-  const url = 'http://localhost:8080/api/test'
   const urlAcceptedSubmissions = 'http://localhost:8080/api/submissions/accepted'
   const urlSearchAcceptedSubmissions = 'http://localhost:8080/api/submissions/search'
 
-  const submit = (e)=>{
-    axios.get(url)
-    .then(res=>{
-      console.log(res.data);
-    })
-    .catch(err=>{
-      console.log(err);
-    })
-
-  }
+ 
 
   //obtener accepted submissions al cargar la pagina
   const [submissions,setSubmissions] = useState([])
@@ -70,7 +60,7 @@ const Videos = () => {
       }
       else if(type === 'Video'){
         return (
-          <Card>
+          <Card className='card'>
           <Card.Header as='h5'>{title}</Card.Header>
           <Card.Body>
             <Card.Title>{author}</Card.Title>
