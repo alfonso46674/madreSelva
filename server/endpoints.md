@@ -116,11 +116,17 @@ GET Endpoint: **/submissions/pending**
 
 &nbsp;
 ### Search submissions by title/author/category
-GET Endpoint: **/submissions/search**
+POST Endpoint: **/submissions/search**
 
-Send search conditions as query params.
-i.e. http://localhost:8080/submissions/search?author=Alfonso&title=Practica3&category=educacion
+Search a submission by author, title and/or category
 
+Body to send: 
+
+    {
+        author: -name of the author-,
+        title: -submission title-,
+        category: -category of the document-,
+    }
 &nbsp;
 
 ## Modify submissions
