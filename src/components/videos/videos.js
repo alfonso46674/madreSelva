@@ -9,6 +9,7 @@ import axios from 'axios'
 const Videos = () => {
   const url = 'http://localhost:8080/api/test'
   const urlAcceptedSubmissions = 'http://localhost:8080/api/submissions/accepted'
+  const urlSearchAcceptedSubmissions = 'http://localhost:8080/api/submissions/search'
 
   const submit = (e)=>{
     axios.get(url)
@@ -28,7 +29,7 @@ const Videos = () => {
   useEffect(()=>{
     axios.get(urlAcceptedSubmissions)
     .then(res=>{
-      console.log(res.data);
+      // console.log(res.data);
       setSubmissions(res.data)
     })
     .catch(err=>{
@@ -84,30 +85,37 @@ const Videos = () => {
       }
     })
   }
-  // const renderTableData = () => {
-  //   return submissions.map((submission,index)=>{
-  //     const {id,type,title,author,category,abstract,videoLink} = submission
-  //     if(type === 'Archivo'){
-  //       return(
-  //         <div>
-  //           <tr>
-  //           <td>{title}</td>
-  //           <td>Descargar</td>
-  //         </tr>
-  //         <tr>
-  //           <td>{author}</td>
-  //           <td>{abstract}</td>
-  //         </tr>
-  //         </div>
-  //       )
-  //     }
-  //     else if(type === 'Video'){
-  //       return (
-  //         <ReactPlayer url='https://www.youtube.com/watch?v=aSDAefhnTXQ'></ReactPlayer>
-  //       )
-  //     }
-  //   })
-  // }
+
+  //search data
+  const [searchData,setData] = useState({
+    author:'',
+    title:'',
+    category:''
+  })
+  
+  const setSearchData = (e)=>{
+    const newData = {...searchData}
+    newData[e.target.id] = e.target.value
+    setData(newData)
+  }
+  //buscar accepted submissions
+  const searchSubmissions =(e)=>{
+    e.preventDefault()
+    console.log(searchData)
+
+    axios.post(urlSearchAcceptedSubmissions,{
+      author:searchData.author,
+      title: searchData.title,
+      category: searchData.category
+    })
+    .then(res =>{
+      setSubmissions(res.data)
+    })
+    .catch(err=>{
+      console.log(err);
+    })
+  }
+
   return (
     <Container className='VideosContainer'>
       <Form className='VideosForm'>
@@ -115,19 +123,20 @@ const Videos = () => {
           <Col sm={4} className=''>
             <Form.Group >
               <Form.Label>Filtrar por título</Form.Label>
-              <Form.Control type="text" placeholder="Escriba el título que quiera buscar" id='summary' />
+              <Form.Control onChange={(e)=>setSearchData(e)} type="text" placeholder="Escriba el título que quiera buscar" id='title' />
             </Form.Group>
           </Col>
           <Col sm={4} className=''>
             <Form.Group >
               <Form.Label>Filtrar por autor</Form.Label>
-              <Form.Control type="text" placeholder="Escriba el nombre del autor" id='date' />
+              <Form.Control onChange={(e)=>setSearchData(e)} type="text" placeholder="Escriba el nombre del autor" id='author' />
             </Form.Group>
           </Col>
           <Col sm={4} className=''>
           <Form.Group >
             <Form.Label>Categoría</Form.Label>
-            <Form.Control as="select" defaultValue="Elegir..." id='category'>
+            <Form.Control onChange={(e)=>setSearchData(e)} as="select" defaultValue="" id='category'>
+              <option>Ninguna</option>
               <option>Crítica</option>
               <option>Educación</option>
               <option>Difusión</option>
@@ -137,17 +146,12 @@ const Videos = () => {
           </Form.Group>
           </Col>
         </Row>
-        <Button variant="contained" color="primary" type="submit" className='SubmitBtn' >
+        <Button variant="contained" color="primary" type="submit" className='SubmitBtn' onClick={searchSubmissions} >
           Filtrar
         </Button>
       </Form>
       <Row justify='center'>
         <Col>
-         {/* <table>
-           <tbody>
-            {renderTableData()}
-           </tbody>
-         </table> */}
          {renderCardData()}
         </Col>
       </Row>
