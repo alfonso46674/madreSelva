@@ -1,7 +1,7 @@
 const router = require('express').Router()
 
 const fs = require('fs')
-
+const path = require('path')
 
 //return all submissions
 router.get('/all',(req,res)=>{
@@ -127,8 +127,23 @@ router.put('/status',(req,res)=>{
         let submissionIndex = dbJSON.findIndex(submission => submission.id === id)
         // console.log(submissionIndex);
         if(submissionIndex !== -1){
+
+            //obtained submission by the query id
+            let submission = dbJSON[submissionIndex]
+
+            //if the status is rejected, delete the agreement file and document (if it exists)
+            // if(status === 'Rejected'){
+            //     //check if submission is a document, remove the document if it exists
+            //     if(submission.type === 'Archivo'){
+            //         fs.unlinkSync(path.normalize(submission.filePath))
+            //     }
+            //     //remove agreement
+            //     fs.unlinkSync(path.normalize(submission.agreementPath))
+
+            // }
+
             //update status of obtained submission
-            dbJSON[submissionIndex].status = status
+            submission.status = status
 
             //save the new version of the db by overwriting the old db.json
             fs.writeFileSync('server/DB/db.json',JSON.stringify(dbJSON))
