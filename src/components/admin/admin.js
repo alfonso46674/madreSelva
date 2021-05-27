@@ -12,6 +12,7 @@ const Admin = () => {
   const urlChangeStatus = 'http://localhost:8080/api/submissions/status'
   const urlDownloadFile = 'http://localhost:8080/api/files/download?id='
   const urlDownloadAgreement = 'http://localhost:8080/api/files/agreement?id='
+  const urlVideoLink = 'http://localhost:8080/api/files/video?id='
   
   const [logged, setLogged] = useState(0)
   const [tryEmail, setTryEmail] = useState('')
@@ -142,7 +143,18 @@ const Admin = () => {
       })
     }
     else if(e.target.innerHTML === 'Video'){
-      console.log('video')
+      axios({
+        url: urlVideoLink + idEvent,
+        method: 'GET'
+      })
+      .then(res => {
+        // console.log(res.data.videoLink);
+        window.open(res.data.videoLink)
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      
     }
   }
 
