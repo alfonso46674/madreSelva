@@ -192,7 +192,7 @@ const Uploads = () => {
           </li>
 
           <li>
-            <p>Además del trabajo académico, se requerirán los siguientes elementos en la solicitud: Breve resumen del trabajo, nombre completo del autor, título del trabajo, y la carta de uso de contenidos.</p>
+            <p>Además del trabajo académico, se requerirán los siguientes elementos en la solicitud: Breve resumen del trabajo, nombre completo del autor, título del trabajo, última fecha de modificación, y la carta de uso de contenidos.</p>
           </li>
 
           <li>
@@ -202,6 +202,12 @@ const Uploads = () => {
           <li>
             <p>Antes de proceder te pedimos que descargues la carta de uso de contenidos que estará disponible aquí debajo, para que la adjuntes en formato PDF en la solicitud de publicación con los datos requeridos en ella (es esencial que tenga firma y nombre).</p>
             <Button onClick={downloadAgreementTemplate} variant="contained" color="primary" className='SubmitBtn'>Carta de uso</Button>
+          </li>
+          <li>
+            <p>Una vez subido tu trabajo académico con los datos requeridos la solicitud será sometida a revisión. En caso de ser aceptada tu proyecto aparecerá en la página de Inicio.</p>
+          </li>
+          <li>
+            <p>Si tu solicitud no ha sido actualizada en una semana puedes ponerte en contacto con el administrador de la página a través del siguiente correo para saber la razón del rechazo: madreselva.edu.art@gmail.com</p>
           </li>
         </ul>
         
