@@ -5,21 +5,22 @@ const path = require('path')
 const fs = require('fs')
 
 //multer configuration
+    let time = new Date()
+    let timestamp = time.toISOString().replace(':','-').replace(':','-')
     //storage configuration
     const storage = multer.diskStorage({
         destination: path.join(__dirname,'../files'),
         filename: (req,file,cb)=>{
             // cb(null, file.originalname+ new Date().toISOString() +path.extname(file.originalname))
-            cb(null,file.originalname)
+            cb(null,timestamp+file.originalname)
         }
     })
 
     //file filter that only accepts pdfs
     const fileFilter = (req,file,cb)=>{
         if(file.mimetype === 'application/pdf'){
-
             //Verify that file has not been already uploaded, if so then dont store anything
-            if(verifyIfFileExists('server/files',file.originalname)) cb(null,false)
+            if(verifyIfFileExists('server/files',timestamp + file.originalname)) cb(null,false)
             else cb(null,true)
         }else{
             cb(null,false) // ignore other files
