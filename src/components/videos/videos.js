@@ -5,11 +5,12 @@ import Button from '@material-ui/core/Button';
 import FileDownload from 'js-file-download'
 import ReactPlayer from 'react-player';
 import axios from 'axios'
+import {url} from '../../config/env_variables'
 
 const Videos = () => {
-  const urlAcceptedSubmissions = 'https://madreselva.ddns.net/api/submissions/accepted'
-  const urlSearchAcceptedSubmissions = 'https://madreselva.ddns.net/api/submissions/search'
-  const urlDownloadFile = 'https://madreselva.ddns.net/api/files/download?id='
+  const urlAcceptedSubmissions = `${url}/api/submissions/accepted`
+  const urlSearchAcceptedSubmissions = `${url}/api/submissions/search`
+  const urlDownloadFile = `${url}/api/files/download?id=`
  
 
   //obtener accepted submissions al cargar la pagina

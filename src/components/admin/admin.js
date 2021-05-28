@@ -5,14 +5,15 @@ import Button from '@material-ui/core/Button';
 import axios from 'axios'
 import Modal from 'react-modal';
 import FileDownload from 'js-file-download'
+import {url} from '../../config/env_variables'
 
 const Admin = () => {
 
-  const urlSubmissions = 'https://madreselva.ddns.net/api/submissions/all'
-  const urlChangeStatus = 'https://madreselva.ddns.net/api/submissions/status'
-  const urlDownloadFile = 'https://madreselva.ddns.net/api/files/download?id='
-  const urlDownloadAgreement = 'https://madreselva.ddns.net/api/files/agreement?id='
-  const urlVideoLink = 'https://madreselva.ddns.net/api/files/video?id='
+  const urlSubmissions = `${url}/api/submissions/all`
+  const urlChangeStatus = `${url}/api/submissions/status`
+  const urlDownloadFile = `${url}/api/files/download?id=`
+  const urlDownloadAgreement = `${url}/api/files/agreement?id=`
+  const urlVideoLink = `${url}/api/files/video?id=`
   
   const [logged, setLogged] = useState(0)
   const [tryEmail, setTryEmail] = useState('')

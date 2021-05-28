@@ -19,11 +19,6 @@ let options = {
     cert:certificate
 }
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
-    });
 
 //server static build of react project
 // app.use(express.static(path.normalize('build')))
@@ -35,7 +30,7 @@ app.use(json());
 app.use(urlencoded({extended: false}));
 // const corsOptions = {origin: '*',optionSuccessStatus:200}
 // app.use(cors(corsOptions))
-
+app.use(cors())
 
 
 //send request to router

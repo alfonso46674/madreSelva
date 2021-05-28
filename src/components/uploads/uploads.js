@@ -5,11 +5,12 @@ import Button from '@material-ui/core/Button';
 import axios from 'axios'
 import Modal from 'react-modal'
 import FileDownload from 'js-file-download'
+import {url} from '../../config/env_variables'
 
 const Uploads = () => {
-    const urlPdf = 'https://madreselva.ddns.net/api/publish/pdf'
-    const urlVideo = 'https://madreselva.ddns.net/api/publish/videoLink'
-    const urlAgreementTemplate = 'https://madreselva.ddns.net/api/files/agreementTemplate'
+    const urlPdf = `${url}/api/publish/pdf`
+    const urlVideo = `${url}/api/publish/videoLink`
+    const urlAgreementTemplate = `${url}/api/files/agreementTemplate`
 
     const customStyles = {
       content: {
