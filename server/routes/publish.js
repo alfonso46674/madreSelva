@@ -60,8 +60,8 @@ const fs = require('fs')
             
             // console.log(req.file);
             //verify body contents
-            let {abstract,author,title,category} = req.body
-            if(abstract !== undefined && author !== undefined && title !== undefined && category !== undefined){
+            let {abstract,author,title,category,date} = req.body
+            if(abstract !== undefined && author !== undefined && title !== undefined && category !== undefined && date !== undefined){
                 
                 //Save in the DB the parameters, along with the file path for future access
 
@@ -75,6 +75,7 @@ const fs = require('fs')
                     title: title,
                     abstract: abstract,
                     category: category,
+                    date:date,
                     filePath: req.files.document[0].path,
                     agreementPath: req.files.agreement[0].path,
                     status: 'pending',
@@ -107,8 +108,8 @@ const fs = require('fs')
         else {
 
             //verify body contents
-            let {abstract,author,title,category,videoLink} = req.body
-            if(abstract !== undefined && author !== undefined && title !== undefined && category !== undefined && videoLink !== undefined){
+            let {abstract,author,title,category,videoLink,date} = req.body
+            if(abstract !== undefined && author !== undefined && title !== undefined && category !== undefined && videoLink !== undefined && date !== undefined){
                 
                 //Save in the DB the parameters, along with the agreement file path for future access
 
@@ -122,6 +123,7 @@ const fs = require('fs')
                     title: title,
                     abstract: abstract,
                     category: category,
+                    date: date,
                     filePath: null,
                     agreementPath: req.file.path,
                     status: 'pending',

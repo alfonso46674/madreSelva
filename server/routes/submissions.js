@@ -131,7 +131,7 @@ router.put('/status',(req,res)=>{
     try {
         //read db.json
         let dbJSON = JSON.parse(fs.readFileSync('server/DB/db.json'))
-        console.log(req.body);
+        // console.log(req.body);
         let {id,status} = req.body
         id = parseInt(id)
         //filter submissions and obtain a submission with the passed id
