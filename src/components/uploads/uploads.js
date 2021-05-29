@@ -37,6 +37,7 @@ const Uploads = () => {
       title: '',
       abstract: '',
       category: '',
+      date:'',
       videoLink: null,
       document: null,
       agreement: null,
@@ -71,6 +72,7 @@ const Uploads = () => {
       bodyFormData.append('document',data.document)
       bodyFormData.append('videoLink',data.videoLink)
       bodyFormData.append('agreement',data.agreement)
+      bodyFormData.append('date',data.date)
 
       axios({
         method: "post",
@@ -99,6 +101,7 @@ const Uploads = () => {
       bodyFormData.append('document',data.document)
       bodyFormData.append('videoLink',data.videoLink)
       bodyFormData.append('agreement',data.agreement)
+      bodyFormData.append('date',data.date)
 
       axios({
         method: "post",
@@ -239,6 +242,10 @@ const Uploads = () => {
             </Form.Control>
           </Form.Group>
           <Form.Group >
+            <Form.Label>Última fecha de modificación</Form.Label>
+            <Form.Control required onChange={(e) => myFunction(e)} type="date" placeholder="Ingrese la última fecha de modificación" id='date' />
+          </Form.Group>
+          <Form.Group >
             <Form.Label>Resumen</Form.Label>
             <Form.Control required onChange={(e) => myFunction(e)} as="textarea" placeholder="Ingrese un pequeño resumen acerca del documento" id='abstract' />
           </Form.Group>
@@ -278,6 +285,10 @@ const Uploads = () => {
               <option>Investigación</option>
               <option>Otros</option>
             </Form.Control>
+          </Form.Group>
+          <Form.Group >
+            <Form.Label>Última fecha de modificación</Form.Label>
+            <Form.Control required onChange={(e) => myFunction(e)} type="date" placeholder="Ingrese la última fecha de modificación" id='date' />
           </Form.Group>
           <Form.Group >
             <Form.Label>Resumen</Form.Label>
