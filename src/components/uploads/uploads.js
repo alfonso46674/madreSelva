@@ -164,7 +164,7 @@ const Uploads = () => {
                   <p>Tamaño carta</p>
                 </li>
                 <li>
-                  <p>Portada del documento con título del trabajo, nombre del autor y logos pertinentes del proyecto</p>
+                  <p>Portada del documento con título del trabajo, nombre del autor, logos pertinentes del proyecto y última fecha de modificación</p>
                 </li>
                 <li>
                   <p>Títulos en Arial Negrita tamaño 16</p>
