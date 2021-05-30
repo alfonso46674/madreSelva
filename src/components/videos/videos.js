@@ -43,7 +43,7 @@ const Videos = () => {
 
   const renderCardData = () => {
     return submissions.map((submission,index)=>{
-      const {id,type,title,author,category,abstract,videoLink} = submission
+      const {id,type,title,author,category,abstract,videoLink,date} = submission
       if(type === 'Archivo'){
         return(
           <Card >
@@ -54,6 +54,9 @@ const Videos = () => {
             <Card.Title>{author}</Card.Title>
             <Card.Text>
               {abstract}
+            </Card.Text>
+            <Card.Text>
+              Última fecha de modificación: {date}
             </Card.Text>
             <Button onClick={downloadPDF} variant="contained" color="primary" className='SubmitBtn'>Descargar PDF</Button>
           </Card.Body>
@@ -70,6 +73,9 @@ const Videos = () => {
             <Card.Title>{author}</Card.Title>
             <Card.Text>
               {abstract}
+            </Card.Text>
+            <Card.Text>
+              Última fecha de modificación: {date}
             </Card.Text>
             <ReactPlayer url={videoLink}></ReactPlayer>
           </Card.Body>
