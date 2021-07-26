@@ -1,72 +1,40 @@
-# Getting Started with Create React App
+# Madre Selva
+Web platform for the dissemination and creation of academic content on art and culture. 
 
+## Getting Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To run the React Frontend
+```
+npm run start
+```
 
-## Available Scripts
+To run the Node Backend
 
-In the project directory, you can run:
+```
+npm run dev
+```
 
-### `yarn start`
+To run the whole project (Frontend and Backend)
+```
+npm run prod
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## How it was done?
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This web page was done with React and Node.js, and deployed in a RaspberryPi 3 with the aid from a domain from https://www.noip.com/ 
 
-### `yarn test`
+Since the RaspberryPi was behind a home router, its ip needed to be accesible to the internet. Port forwarding external requests to an arbitrary port from the router was the solution to this problem. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+PM2 was installed in the RaspberryPi to run the Node Backend in the background and handle maintenance. 
 
-### `yarn build`
+The use of a Database such as MongoDB or SQLite was not implemented since there was not enough time to make it happen, that is the reason of using a JSON file as the database - which is not ideal -.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## How it works?
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Anyone can submit a video or document related to art and culture in the "Publish" section. After that, the administrator will review the newest submissions, and if they are approved, they will be shown in the main page.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
+## Screenshots
+![mainPage](/img/mainPage.JPG)
+![aboutUs](/img/aboutUs.JPG)
+![publish](/img/publish.JPG)
+![admin](/img/admin.JPG)
