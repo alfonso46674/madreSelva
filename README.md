@@ -19,7 +19,7 @@ To run the whole project (Frontend and Backend)
 npm run prod
 ```
 
-## How it was done?
+## How was it done?
 
 This web page was done with React and Node.js, and deployed in a RaspberryPi 3 with the aid from a domain from https://www.noip.com/ 
 
@@ -29,7 +29,7 @@ PM2 was installed in the RaspberryPi to run the Node Backend in the background a
 
 The use of a Database such as MongoDB or SQLite was not implemented since there was not enough time to make it happen, that is the reason of using a JSON file as the database - which is not ideal -.
 
-## How it works?
+## How does it works?
 
 Anyone can submit a video or document related to art and culture in the "Publish" section. After that, the administrator will review the newest submissions, and if they are approved, they will be shown in the main page.
 
